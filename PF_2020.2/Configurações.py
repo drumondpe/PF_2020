@@ -6,13 +6,16 @@ import math
 import pygame
 vetor = pygame.math.Vector2
 
-class Configurações():
+class Config():
     #define as configurações básicas
     def __init__(self):
         self.titulo = 'Star Fight'
 
         self.largura_tela = 600
         self.altura_tela = 670
+
+        self.cores = Cores()
+        self.textos = Textos()
 
 class Cores():
     #define as cores básicas
