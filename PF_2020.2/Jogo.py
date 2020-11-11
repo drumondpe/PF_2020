@@ -11,6 +11,7 @@ import Funções as funcoes
 
 CONFIG = Config()
 TEXTOS = Textos()
+RODAR = True
 
 def rodar_jogo():
     #inicializa o jogo
@@ -22,7 +23,6 @@ def rodar_jogo():
 
     #booleanos para jogar
 
-    RODAR = True
     TELA_INICIO = True
 
     #precisa iniciar os objetos aqui
@@ -31,7 +31,9 @@ def rodar_jogo():
     #apresenta tela inicial
     funcoes.primeira_tela()
 
-rodar_jogo()
+while RODAR:
+    rodar_jogo()
+
 
 
 
