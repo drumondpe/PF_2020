@@ -34,6 +34,12 @@ def rodar_jogo():
 while RODAR:
     rodar_jogo()
 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            RODAR = False
+
+            
+
 
 
 
