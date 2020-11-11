@@ -5,6 +5,8 @@ Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
 import pygame
 
 from Configurações import Config
+from Configurações import Textos
+from Configurações import Cores
 import Funções as funcoes
 
 CONFIG = Config()
@@ -28,8 +30,8 @@ def rodar_jogo():
 
     #apresenta tela inicial
     funcoes.primeira_tela()
-    
 
+rodar_jogo()
 
 
 

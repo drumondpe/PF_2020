@@ -4,10 +4,12 @@
 import math
 import pygame
 from Configurações import Config
+from Configurações import Textos
+from Configurações import Cores
 
 CONFIG = Config()
-TEXTOS = Config.textos()
-CORES = Config.cores()
+TEXTOS = Textos()
+CORES = Cores()
 
 def primeira_tela():
     #apresenta a primeira tela
