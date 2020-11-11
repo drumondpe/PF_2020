@@ -29,16 +29,16 @@ def rodar_jogo():
     ###
 
     #apresenta tela inicial
-    funcoes.primeira_tela()
+    funcoes.primeira_tela(tela)
 
 while RODAR:
     rodar_jogo()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            RODAR = False
+    funcoes.eventos(RODAR)
 
-            
+    
+
+
 
 
 
