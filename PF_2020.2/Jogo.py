@@ -22,22 +22,31 @@ def rodar_jogo():
     relogio = pygame.time.Clock()
 
     #booleanos para jogar
+    RODAR = True
+    TELA_INICIAL = True
+    TELA_SEGUNDA = False
+    COLISAO_ALIEN = False #usar para quando houver colisão do alien com a nave
+    COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com o alien
 
-    TELA_INICIO = True
 
     #precisa iniciar os objetos aqui
     ###
 
-    #apresenta tela inicial
-    funcoes.primeira_tela(tela)
 
-while RODAR:
-    rodar_jogo()
+    while RODAR:
+        
+        RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA)
 
-    funcoes.eventos(RODAR)
+        #apresenta tela inicial
+        funcoes.primeira_tela(tela)
 
-    
+        ###musica
+        #pygame.mixer.music.load('xxx')
+        #pygame.mixer.music.play()
 
+        pygame.display.flip()
+
+rodar_jogo()
 
 
 

@@ -12,7 +12,7 @@ class Config():
         self.titulo = 'Star Fight'
 
         self.largura_tela = 600
-        self.altura_tela = 670
+        self.altura_tela = 650
 
         self.cores = Cores()
         self.textos = Textos()
