@@ -24,7 +24,8 @@ def primeira_tela(tela):
 
 
     #posição na primeira tela
-    tela.blit(titulo_do_jogo())
+    tela.fill(CORES.preto) #preenche a tela com a cor preta
+    tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_widdth() // 2, 90)
 
 
 
