@@ -34,7 +34,8 @@ class Textos():
     def __init__(self):
 
         self.fonte = 'Futura ZBlk BT'
-        self.tamanho_grande = 56
-        self.tamanho_pequeno = 40
+        self.tamanho_grande = 55
+        self.tamanho_medio = 44
+        self.tamanho_nome = 30
 
 

@@ -16,15 +16,28 @@ def primeira_tela(tela):
 
     #configurações das fontes
     fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
+    fonte_texto_nomes = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
+    fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
 
     #textos da primeira tela
     titulo_do_jogo = fonte_texto_tela_inicial.render(CONFIG.titulo, True, CORES.vermelho)
-
+    barra_comecar = fonte_texto_medio.render('Barra de Espaço para começar!', True, CORES.azul_marinho)
+    #barra_comecar2 = fonte_texto_tela_inicial.render('para começar!', True, CORES.azul_marinho)
+    nome_criador1 = fonte_texto_nomes.render('Henrry Miguel', True, CORES.verde)
+    nome_criador2 = fonte_texto_nomes.render('Luiz Durand', True, CORES.verde)
+    nome_criador3 = fonte_texto_nomes.render('Pedro Drumond', True, CORES.verde)
+    insper = fonte_texto_nomes.render('ENG - INSPER 2020.2', True, CORES.vermelho)
 
     #posição na primeira tela
     ###PUXAR A TELA LÁ DE JOGO
     tela.fill(CORES.preto) #preenche a tela com a cor preta
-    tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 90))
+    tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 85))
+    tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 180))
+    tela.blit(nome_criador1, (CONFIG.largura_tela // 2 - nome_criador1.get_width() // 2, 480))
+    tela.blit(nome_criador2, (CONFIG.largura_tela // 2 - nome_criador2.get_width() // 2, 520))
+    tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
+    tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
+
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
 
