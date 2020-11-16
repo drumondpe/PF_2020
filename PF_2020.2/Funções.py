@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+###colocar o fundo
+###fazer a classe do player
+###movimentação do player
+
+
 #Funções
 import math
 import pygame
@@ -11,6 +16,7 @@ from Configurações import Cores
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
+
 def primeira_tela(tela): #apresenta a primeira tela
 
     #configurações das fontes
@@ -40,9 +46,12 @@ def primeira_tela(tela): #apresenta a primeira tela
 
 def segunda_tela(tela): #apresenta a segunda tela
     #para add textos mexer aqui
-    textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS)
+    textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
     #para mexer na tela, mexer aqui 
-    fundo = pygame.image.load('Fundo_galáxia').convert()
+    fundo = pygame.image.load('Fundo_galáxia.png').convert()
+    fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
+    tela.fill(CORES.preto)
+    tela.blit(fundo, (0, 0))
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
 

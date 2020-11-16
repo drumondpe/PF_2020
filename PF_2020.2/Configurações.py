@@ -11,7 +11,7 @@ class Config():
     def __init__(self):
         self.titulo = 'Star Fight'
 
-        self.largura_tela = 600
+        self.largura_tela = 1000
         self.altura_tela = 650
 
         self.cores = Cores()

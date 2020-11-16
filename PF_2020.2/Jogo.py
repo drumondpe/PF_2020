@@ -48,7 +48,7 @@ def rodar_jogo():
         
             tela.fill(CORES.preto)
             #mapa
-            segunda_tela = funcoes.segunda_tela
+            segunda_tela = funcoes.segunda_tela(tela)
         
 
 
