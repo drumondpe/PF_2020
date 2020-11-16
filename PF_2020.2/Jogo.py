@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+#fazer a movimentação do Player
+#avançar com a classe dos Aliens 
+#começar os disparos
+
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
 """
@@ -50,6 +55,10 @@ def rodar_jogo():
             tela.fill(CORES.preto)
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
+
+            NAVE.atualiza_posicao_NAVE() #atualiza a posição da nava
+
+            tela.blit(NAVE.imagem, NAVE.rect) #mostra a nave na tela
         
 
 

@@ -20,10 +20,10 @@ class Nave(pygame.sprite.Sprite):
         self.NAVE_altura = 20
 
         self.imagem = pygame.image.load('Nave.png').convert_alpha()
-        self.imagem = pygame.transform.scale(self.imagem, (NAVE_largura, NAVE_altura))
+        self.imagem = pygame.transform.scale(self.imagem, (self.NAVE_largura, self.NAVE_altura))
         self.rect = self.imagem.get_rect()
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
+        self.rect.centerx = CONFIG.largura_tela / 2
+        self.rect.bottom = CONFIG.altura_tela - 10
         self.velocidadeX = 0
     
     def atualiza_posicao_NAVE(self):

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-###colocar o fundo
-###fazer a classe do player
-###movimentação do player
-
 
 #Funções
 import math
