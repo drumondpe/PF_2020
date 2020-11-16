@@ -20,6 +20,7 @@ def rodar_jogo():
     pygame.mixer.init()
 
     tela = pygame.display.set_mode((CONFIG.largura_tela, CONFIG.altura_tela))
+    pygame.display.set_caption('Space Invaders')
     relogio = pygame.time.Clock()
 
     #booleanos para jogar
@@ -47,7 +48,6 @@ def rodar_jogo():
         
             tela.fill(CORES.preto)
             #mapa
-            fundo = pygame.image.load('Fundo_galáxia').convert()
             segunda_tela = funcoes.segunda_tela
         
 

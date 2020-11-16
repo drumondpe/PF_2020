@@ -39,7 +39,10 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
 def segunda_tela(tela): #apresenta a segunda tela
+    #para add textos mexer aqui
     textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS)
+    #para mexer na tela, mexer aqui 
+    fundo = pygame.image.load('Fundo_galáxia').convert()
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
 
