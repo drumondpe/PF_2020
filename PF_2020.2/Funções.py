@@ -11,8 +11,7 @@ from Configurações import Cores
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
-def primeira_tela(tela):
-    #apresenta a primeira tela
+def primeira_tela(tela): #apresenta a primeira tela
 
     #configurações das fontes
     fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
@@ -31,6 +30,7 @@ def primeira_tela(tela):
     #posição na primeira tela
     ###PUXAR A TELA LÁ DE JOGO
     tela.fill(CORES.preto) #preenche a tela com a cor preta
+    #preenche a tela com frases
     tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 85))
     tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 180))
     tela.blit(nome_criador1, (CONFIG.largura_tela // 2 - nome_criador1.get_width() // 2, 480))
@@ -38,6 +38,8 @@ def primeira_tela(tela):
     tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
+def segunda_tela(tela): #apresenta a segunda tela
+    textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS)
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
 

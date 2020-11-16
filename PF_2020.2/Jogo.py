@@ -11,6 +11,7 @@ import Funções as funcoes
 
 CONFIG = Config()
 TEXTOS = Textos()
+CORES = Cores()
 RODAR = True
 
 def rodar_jogo():
@@ -32,17 +33,23 @@ def rodar_jogo():
     #precisa iniciar os objetos aqui
     ###
 
-
+    #apresenta tela inicial
+    funcoes.primeira_tela(tela)
+    #pygame.mixer.music.load('xxx')
+    #pygame.mixer.music.play()
+    
     while RODAR:
         
+        #atualiza os booleanos
         RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA)
 
-        #apresenta tela inicial
-        funcoes.primeira_tela(tela)
+        if TELA_SEGUNDA and not TELA_INICIAL: #and not, and not...
+        
+            tela.fill(CORES.preto)
+            #mapa
+            segunda_tela = funcoes.segunda_tela
+        
 
-        ###musica
-        #pygame.mixer.music.load('xxx')
-        #pygame.mixer.music.play()
 
         pygame.display.flip()
 
