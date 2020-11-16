@@ -7,6 +7,7 @@ import pygame
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
+from Player import Nave
 import Funções as funcoes
 
 CONFIG = Config()
@@ -31,8 +32,8 @@ def rodar_jogo():
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com o alien
 
 
-    #precisa iniciar os objetos aqui
-    ###
+    #inicia objetos
+    NAVE = Nave(tela, CONFIG)
 
     #apresenta tela inicial
     funcoes.primeira_tela(tela)
@@ -50,6 +51,7 @@ def rodar_jogo():
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
         
+
 
 
         pygame.display.flip()
