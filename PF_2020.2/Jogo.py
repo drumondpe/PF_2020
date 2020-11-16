@@ -47,6 +47,7 @@ def rodar_jogo():
         
             tela.fill(CORES.preto)
             #mapa
+            fundo = pygame.image.load('Fundo_galáxia').convert()
             segunda_tela = funcoes.segunda_tela
         
 
