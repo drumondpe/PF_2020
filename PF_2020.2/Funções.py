@@ -7,12 +7,13 @@ import pygame
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
+from Player import Nave
 
 
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
-
+NAVE = Nave(tela, CONFIG) #porque aqui não está funcionando?
 def primeira_tela(tela): #apresenta a primeira tela
 
     #configurações das fontes
@@ -69,8 +70,26 @@ def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
                     TELA_INICIAL = False
                     TELA_SEGUNDA = True
 
-        #elif TELA_SEGUNDA:
+        elif TELA_SEGUNDA:
             #aqui vamos criar movimentação e importar o player e mobs
+
+            #vê se apertou alguma tecla
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    NAVE.velocidadeX -= NAVE.aceleracaoX
+
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    NAVE.velocidadeX += NAVE.aceleracaoX            
+
+            #vê se soltou alguma tecla
+            if event.type == pygame.KEYUP:
+
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    NAVE.velocidadeX += NAVE.aceleracaoX
+
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    NAVE.velocidadeX -= NAVE.aceleracaoX
 
 
     return RODAR, TELA_INICIAL, TELA_SEGUNDA

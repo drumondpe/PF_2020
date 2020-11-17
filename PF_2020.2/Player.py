@@ -25,6 +25,7 @@ class Nave(pygame.sprite.Sprite):
         self.rect.centerx = CONFIG.largura_tela / 2
         self.rect.bottom = CONFIG.altura_tela - 10
         self.velocidadeX = 0
+        self.aceleracaoX = 5
     
     def atualiza_posicao_NAVE(self):
         #atualiza a posição da nave

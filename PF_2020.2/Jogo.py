@@ -50,15 +50,19 @@ def rodar_jogo():
         #atualiza os booleanos
         RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA)
 
-        if TELA_SEGUNDA and not TELA_INICIAL: #and not, and not...
+        if TELA_SEGUNDA and not TELA_INICIAL: #isso vai ficar rodando infinitamente, então a cada passagem vai "blitar" a nave? como arrumar?
         
             tela.fill(CORES.preto)
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
+            
+            funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA) #verifica os eventos
 
-            NAVE.atualiza_posicao_NAVE() #atualiza a posição da nava
+            NAVE.atualiza_posicao_NAVE() #atualiza a posição da nave
 
             tela.blit(NAVE.imagem, NAVE.rect) #mostra a nave na tela
+
+            pygame.display.update()
         
 
 
