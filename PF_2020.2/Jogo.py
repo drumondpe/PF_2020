@@ -13,11 +13,13 @@ from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
 from Player import Nave
+from Aliens import Alien
 import Funções as funcoes
 
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
+ALIEN = Alien()
 RODAR = True
 
 def rodar_jogo():
@@ -37,8 +39,14 @@ def rodar_jogo():
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com o alien
 
 
-    #inicia objetos
+    ### INICIA OBJETOS ###
     NAVE = Nave(tela, CONFIG)
+
+    Aliens = pygame.sprite.Group()
+    for cada_alien in range (10):
+        alien = ALIEN(tela) #precisa da tela aq?
+        Aliens.add(alien)
+
 
     #apresenta tela inicial
     funcoes.primeira_tela(tela)
@@ -55,6 +63,9 @@ def rodar_jogo():
             tela.fill(CORES.preto)
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
+
+            Aliens.update() #atualiza a posição dos Aliens
+            Aliens.draw(tela) #desenha todos os Aliens
             
             funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA) #verifica os eventos
 
