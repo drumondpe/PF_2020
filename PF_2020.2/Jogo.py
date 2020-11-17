@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-#fazer a movimentação do Player
-#avançar com a classe dos Aliens 
+### próximos passos
+#fazer a movimentação do Player - travado
+#avançar com a classe dos Aliens - travado
+#fazer colisões
 #começar os disparos
 
 """
@@ -64,7 +66,7 @@ def rodar_jogo():
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
 
-            Aliens.update() #atualiza a posição dos Aliens
+            Aliens.atualiza_posicao_ALIENS() #atualiza a posição dos Aliens (não está atualizando)
             Aliens.draw(tela) #desenha todos os Aliens
             
             funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA) #verifica os eventos
