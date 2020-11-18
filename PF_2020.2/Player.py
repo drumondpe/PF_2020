@@ -12,7 +12,7 @@ CORES = Cores()
 class Nave(pygame.sprite.Sprite):
     #classe do player
 
-    def __init__(self, CONFIG): #sprites, disparos
+    def __init__(self, CONFIG, sprites, disparos_sprite):
         super().__init__()
 
         self.CONFIG = CONFIG
@@ -27,6 +27,12 @@ class Nave(pygame.sprite.Sprite):
         self.velocidadeX = 0
         self.aceleracaoX = 5
         self.vidas = 3
+
+        self.sprites = sprites
+        #disparo da nave
+        self.disparos_sprite = disparos_sprite
+        self.imagem_disparo = pygame.image.load('Disparo.png').convert_alpha()
+        
     
     def update(self):
         #atualiza a posição da nave
@@ -37,3 +43,24 @@ class Nave(pygame.sprite.Sprite):
             self.rect.right = CONFIG.largura_tela
         if self.rect.left < 0:
             self.rect.left = 0
+    
+    def tiro(self):
+        novo_disparo = Disparo(self.imagem_disparo, self.rect.top, self.rect.centerx)
+        self.sprites.add(novo_disparo)
+        self.disparos_sprite.add(novo_disparo)
+
+class Disparo(pygame.sprite.Sprite):
+    #classe do disparo
+    def __init__(self, imagem, baixo, centerx): #se pá mudar para 'image'
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = imagem #se pá mudar para 'image'
+        self.rect = self.image.get_rect()
+        self.rect.centerx = centerx
+        self.rect.bottom = baixo
+        self.speedy = -10 #vel do disparo
+
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.bottom < 0:
+            self.kill() #tiro desaparece se passar do topo da tela

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#arrumar o layout da tela de jogo
 #começar os disparos
+#
 
 ### Problemas ### 
 #não está mudando de tela após apertar K_SPACE
+#imagem PNG
+#arumar spawn e movimentação dos mobs
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
