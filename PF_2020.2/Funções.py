@@ -13,6 +13,7 @@ from Player import Nave
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
+
 def primeira_tela(tela): #apresenta a primeira tela
 
     #configurações das fontes
@@ -23,7 +24,6 @@ def primeira_tela(tela): #apresenta a primeira tela
     #textos da primeira tela
     titulo_do_jogo = fonte_texto_tela_inicial.render(CONFIG.titulo, True, CORES.vermelho)
     barra_comecar = fonte_texto_medio.render('Barra de Espaço para começar!', True, CORES.azul_marinho)
-    #barra_comecar2 = fonte_texto_tela_inicial.render('para começar!', True, CORES.azul_marinho)
     nome_criador1 = fonte_texto_nomes.render('Henrry Miguel', True, CORES.verde)
     nome_criador2 = fonte_texto_nomes.render('Luiz Durand', True, CORES.verde)
     nome_criador3 = fonte_texto_nomes.render('Pedro Drumond', True, CORES.verde)
@@ -40,7 +40,7 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
-def segunda_tela(tela): #apresenta a segunda tela
+def segunda_tela(tela, NAVE): #apresenta a segunda tela
     #para add textos mexer aqui
     textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
     #para mexer na tela, mexer aqui 
@@ -49,7 +49,31 @@ def segunda_tela(tela): #apresenta a segunda tela
     tela.fill(CORES.preto)
     tela.blit(fundo, (0, 0))
 
-def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, NAVE):
+    foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
+    foto_vida = pygame.transform.scale(foto_vida_errada, (30, 30))
+
+    vertices = (0, 0, CONFIG.largura_tela, 30)
+    pygame.draw.rect(tela, CORES.preto, vertices)
+
+    #desenha uma vida na tela
+    posicao = 50
+    for vida in range(NAVE.vidas):
+        tela.blit(foto_vida, (posicao, 6))
+        posicao+=30
+
+def gameover_tela(tela):
+    #configurações das fontes
+    fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
+    fonte_texto_nomes = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
+    fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
+
+    #textos da tela game over
+    game_over = fonte_texto_tela_inicial.render('GAME OVER!', True, CORES.azul_marinho)
+
+    #preenche a tela com frases
+    tela.blit(game_over, (CONFIG.largura_tela // 2 - game_over.get_width() // 2, 180))
+
+def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE):
 
     #verifica se apertou alguma tecla
     for event in pygame.event.get():
@@ -90,7 +114,14 @@ def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, NAVE):
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     NAVE.velocidadeX -= NAVE.aceleracaoX
 
+        elif TELA_GAME_OVER:
+            #vamos ver se o player vai querer jogar de novo
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    TELA_GAME_OVER = False
+                    TELA_SEGUNDA = True
 
-    return RODAR, TELA_INICIAL, TELA_SEGUNDA
+
+    return RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER
 
         
