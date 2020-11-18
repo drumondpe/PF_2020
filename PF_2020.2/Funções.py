@@ -111,7 +111,11 @@ def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE):
                     NAVE.velocidadeX -= NAVE.aceleracaoX
 
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                    NAVE.velocidadeX += NAVE.aceleracaoX            
+                    NAVE.velocidadeX += NAVE.aceleracaoX         
+
+                if event.key == pygame.K_SPACE:
+                    NAVE.tiro()
+
 
             #vê se soltou alguma tecla
             if event.type == pygame.KEYUP:

@@ -32,6 +32,7 @@ class Nave(pygame.sprite.Sprite):
         #disparo da nave
         self.disparos_sprite = disparos_sprite
         self.imagem_disparo = pygame.image.load('Disparo.png').convert_alpha()
+        self.imagem_disparo = pygame.transform.scale(self.imagem_disparo, (25, 25))
         
     
     def update(self):

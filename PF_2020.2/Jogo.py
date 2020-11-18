@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#começar os disparos
+#colisão dos disparos
 #
 
 ### Problemas ### 
@@ -45,10 +45,11 @@ def rodar_jogo():
 
 
     ### INICIA OBJETOS ###
-    NAVE = Nave(CONFIG)
-
     sprites = pygame.sprite.Group()
     aliens_colisao = pygame.sprite.Group()
+    disparos_sprite = pygame.sprite.Group()
+    NAVE = Nave(CONFIG, sprites, disparos_sprite)
+
     for cada_alien in range (10):
         alien = Alien()
         sprites.add(alien)
@@ -66,6 +67,7 @@ def rodar_jogo():
         #atualiza os booleanos
         RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE)
 
+        #SEGUNDA TELA
         if TELA_SEGUNDA and not TELA_INICIAL and not TELA_GAME_OVER: #isso vai ficar rodando infinitamente, então a cada passagem vai "blitar" a nave? como arrumar?
         
             tela.fill(CORES.preto)
@@ -77,8 +79,18 @@ def rodar_jogo():
 
             RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE) #verifica os eventos
             
-            colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão
-            
+            colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave
+            acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
+            #foi criado um dicionario que as chaves são os aliens e os valores os disparos
+
+            #fará a colisão:
+            for alien in acertou_disparo:
+                acerto = Alien()
+                sprites.add(acerto)
+                aliens_colisao.add(acerto)
+
+
+
             if len(colisao)>0: #reduz as vidas conforme as colisões
                 NAVE.vidas -= 1
 
@@ -86,6 +98,8 @@ def rodar_jogo():
                 TELA_SEGUNDA = False
                 TELA_GAME_OVER = True
             
+
+        #TELA GAME OVER    
         if TELA_GAME_OVER and not TELA_INICIAL and not TELA_SEGUNDA: #vai para a tela game_over 
             
             game_over_tela = funcoes.gameover_tela(tela) #não está mudando de tela
