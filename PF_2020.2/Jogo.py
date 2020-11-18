@@ -79,7 +79,7 @@ def rodar_jogo():
 
             RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE) #verifica os eventos
             
-            colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave
+            colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
             acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
             #foi criado um dicionario que as chaves são os aliens e os valores os disparos
 
