@@ -37,5 +37,6 @@ class Textos():
         self.tamanho_grande = 65
         self.tamanho_medio = 55
         self.tamanho_nome = 30
+        self.tamanho_vidas = 25
 
 

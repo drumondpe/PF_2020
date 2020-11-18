@@ -41,8 +41,12 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
 def segunda_tela(tela, NAVE): #apresenta a segunda tela
-    #para add textos mexer aqui
-    textos = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
+    #fonte
+    fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_vidas)
+    #textos
+    restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.branco)
+    pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format('PONTUACAO'), True, CORES.branco) ###MEXER NA PONTUAÇÃO AQUI
+
     #para mexer na tela, mexer aqui 
     fundo = pygame.image.load('Fundo_galáxia.png').convert()
     fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
@@ -50,13 +54,15 @@ def segunda_tela(tela, NAVE): #apresenta a segunda tela
     tela.blit(fundo, (0, 0))
 
     foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
-    foto_vida = pygame.transform.scale(foto_vida_errada, (30, 30))
+    foto_vida = pygame.transform.scale(foto_vida_errada, (25, 25))
 
     vertices = (0, 0, CONFIG.largura_tela, 30)
     pygame.draw.rect(tela, CORES.preto, vertices)
+    tela.blit(restantes, (10, 7))
+    tela.blit(pontuacao, (750, 7))
 
     #desenha uma vida na tela
-    posicao = 50
+    posicao = 150
     for vida in range(NAVE.vidas):
         tela.blit(foto_vida, (posicao, 6))
         posicao+=30
@@ -68,10 +74,12 @@ def gameover_tela(tela):
     fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
 
     #textos da tela game over
-    game_over = fonte_texto_tela_inicial.render('GAME OVER!', True, CORES.azul_marinho)
+    game_over = fonte_texto_tela_inicial.render('GAME OVER!', True, CORES.vermelho)
+    barra_recomeçar = fonte_texto_tela_inicial.render('Pressione barra de espaço para recomeçar!', True, CORES.azul_marinho)
 
     #preenche a tela com frases
     tela.blit(game_over, (CONFIG.largura_tela // 2 - game_over.get_width() // 2, 180))
+    tela.blit(barra_recomeçar, (CONFIG.largura_tela // 2 - barra_recomeçar.get_width() // 2, 380))
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE):
 

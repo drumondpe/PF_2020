@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-### próximos passos
-#avançar com a classe dos Aliens
-#fazer colisões
+### Próximos passos ###
+#arrumar o layout da tela de jogo
 #começar os disparos
+
+### Problemas ### 
+#não está mudando de tela após apertar K_SPACE
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
