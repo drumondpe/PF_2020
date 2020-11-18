@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### próximos passos
-#fazer a movimentação do Player - travado
-#avançar com a classe dos Aliens - travado
+#avançar com a classe dos Aliens
 #fazer colisões
 #começar os disparos
 
@@ -18,17 +17,16 @@ from Player import Nave
 from Aliens import Alien
 import Funções as funcoes
 
+pygame.init()
+pygame.mixer.init()
+
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
-ALIEN = Alien()
 RODAR = True
 
 def rodar_jogo():
     #inicializa o jogo
-    pygame.init()
-    pygame.mixer.init()
-
     tela = pygame.display.set_mode((CONFIG.largura_tela, CONFIG.altura_tela))
     pygame.display.set_caption('Space Invaders')
     relogio = pygame.time.Clock()
@@ -42,12 +40,16 @@ def rodar_jogo():
 
 
     ### INICIA OBJETOS ###
-    NAVE = Nave(tela, CONFIG)
+    NAVE = Nave(CONFIG)
 
-    Aliens = pygame.sprite.Group()
+    sprites = pygame.sprite.Group()
     for cada_alien in range (10):
-        alien = ALIEN(tela) #precisa da tela aq?
-        Aliens.add(alien)
+        alien = Alien()
+        sprites.add(alien)
+
+    nave = NAVE
+    sprites.add(nave)
+    
 
 
     #apresenta tela inicial
@@ -58,7 +60,7 @@ def rodar_jogo():
     while RODAR:
         
         #atualiza os booleanos
-        RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA)
+        RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, NAVE)
 
         if TELA_SEGUNDA and not TELA_INICIAL: #isso vai ficar rodando infinitamente, então a cada passagem vai "blitar" a nave? como arrumar?
         
@@ -66,15 +68,11 @@ def rodar_jogo():
             #mapa
             segunda_tela = funcoes.segunda_tela(tela)
 
-            Aliens.atualiza_posicao_ALIENS() #atualiza a posição dos Aliens (não está atualizando)
-            Aliens.draw(tela) #desenha todos os Aliens
+            sprites.update()
+            sprites.draw(tela) #desenha todos
+
+            RODAR, TELA_INICIAL, TELA_SEGUNDA = funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, NAVE) #verifica os eventos
             
-            funcoes.eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA) #verifica os eventos
-
-            NAVE.atualiza_posicao_NAVE() #atualiza a posição da nave
-
-            tela.blit(NAVE.imagem, NAVE.rect) #mostra a nave na tela
-
             pygame.display.update()
         
 

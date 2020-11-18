@@ -12,22 +12,22 @@ CORES = Cores()
 class Nave(pygame.sprite.Sprite):
     #classe do player
 
-    def __init__(self, tela, CONFIG):
+    def __init__(self, CONFIG):
+        super().__init__()
 
-        self.tela = tela
         self.CONFIG = CONFIG
         self.NAVE_largura = 30
         self.NAVE_altura = 20
 
-        self.imagem = pygame.image.load('Nave.png').convert_alpha()
-        self.imagem = pygame.transform.scale(self.imagem, (self.NAVE_largura, self.NAVE_altura))
-        self.rect = self.imagem.get_rect()
+        self.imagem_grande = pygame.image.load('Nave.png').convert_alpha()
+        self.image = pygame.transform.scale(self.imagem_grande, (self.NAVE_largura, self.NAVE_altura))
+        self.rect = self.image.get_rect()
         self.rect.centerx = CONFIG.largura_tela / 2
         self.rect.bottom = CONFIG.altura_tela - 10
         self.velocidadeX = 0
         self.aceleracaoX = 5
     
-    def atualiza_posicao_NAVE(self):
+    def update(self):
         #atualiza a posição da nave
         self.rect.x += self.velocidadeX
 

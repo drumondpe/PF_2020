@@ -13,7 +13,6 @@ from Player import Nave
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
-NAVE = Nave(tela, CONFIG) #porque aqui não está funcionando?
 def primeira_tela(tela): #apresenta a primeira tela
 
     #configurações das fontes
@@ -50,7 +49,7 @@ def segunda_tela(tela): #apresenta a segunda tela
     tela.fill(CORES.preto)
     tela.blit(fundo, (0, 0))
 
-def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA):
+def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, NAVE):
 
     #verifica se apertou alguma tecla
     for event in pygame.event.get():
