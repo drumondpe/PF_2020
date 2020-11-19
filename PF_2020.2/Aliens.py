@@ -22,17 +22,10 @@ class Alien(pygame.sprite.Sprite):
         self.image.set_colorkey((CORES.preto))
 
         self.rect = self.image.get_rect()
-        #self.rect.x = 100
-        #self.rect.y = -ALTURA_alien
         self.rect.center = [x, y]
 
         self.movimento_contador = 0
         self.movimento_direcao = 1
-
-
-        #self.speedx = random.randint(-3, 3)
-        #self.speedy = random.randint(2, 9)
-
 
     def update(self):
         #atualiza a posição do alien  
