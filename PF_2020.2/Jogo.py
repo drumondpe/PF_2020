@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#colisão dos disparos
 #
 
 ### Problemas ### 
 #não está mudando de tela após apertar K_SPACE
 #imagem PNG
-#arumar spawn e movimentação dos mobs
+#melhorar movimentação
+#disparo bugado
+
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
@@ -48,12 +49,14 @@ def rodar_jogo():
     sprites = pygame.sprite.Group()
     aliens_colisao = pygame.sprite.Group()
     disparos_sprite = pygame.sprite.Group()
-    NAVE = Nave(CONFIG, sprites, disparos_sprite)
+    ###
+    NAVE = Nave(CONFIG, sprites, disparos_sprite) #cria a nave
+    funcoes.cria_aliens(sprites, aliens_colisao) #cria os aliens
 
-    for cada_alien in range (10):
-        alien = Alien()
-        sprites.add(alien)
-        aliens_colisao.add(alien)
+    #for cada_alien in range (10): #AQUI CRIA OS ALIENS
+    #    alien = Alien()
+    #    sprites.add(alien)
+    #    aliens_colisao.add(alien)
 
     nave = NAVE
     sprites.add(nave)
@@ -85,7 +88,7 @@ def rodar_jogo():
 
             #fará a colisão:
             for alien in acertou_disparo:
-                acerto = Alien()
+                acerto = Alien(x, y)
                 sprites.add(acerto)
                 aliens_colisao.add(acerto)
 

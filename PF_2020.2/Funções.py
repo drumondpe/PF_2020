@@ -8,8 +8,10 @@ from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
 from Player import Nave
+from Aliens import Alien
 
-
+linhas = 5
+colunas = 5
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
@@ -66,6 +68,15 @@ def segunda_tela(tela, NAVE): #apresenta a segunda tela
     for vida in range(NAVE.vidas):
         tela.blit(foto_vida, (posicao, 6))
         posicao+=30
+
+
+def cria_aliens(sprites, aliens_colisao): #gera os aliens  
+    for linha in range(linhas): #acessa a linha
+        for item in range(colunas):
+            alien = Alien(100 + item * 100, 100 + linha * 70)
+            sprites.add(alien)
+            aliens_colisao.add(alien)
+
 
 def gameover_tela(tela):
     #configurações das fontes

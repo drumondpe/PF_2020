@@ -16,8 +16,8 @@ class Nave(pygame.sprite.Sprite):
         super().__init__()
 
         self.CONFIG = CONFIG
-        self.NAVE_largura = 30
-        self.NAVE_altura = 20
+        self.NAVE_largura = 50
+        self.NAVE_altura = 50
 
         self.imagem_grande = pygame.image.load('Nave.png').convert_alpha() #mudar
         self.image = pygame.transform.scale(self.imagem_grande, (self.NAVE_largura, self.NAVE_altura))
