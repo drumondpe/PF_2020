@@ -30,12 +30,13 @@ class Alien(pygame.sprite.Sprite):
     def update(self):
         #atualiza a posição do alien  
         self.rect.x += self.movimento_direcao
-        self.rect.y += self.movimento_direcao #talvez mudar aqui
+        #
         self.movimento_contador += 1
-        if abs(self.movimento_contador) > 75: #mexer aqui para movimentação
+        if abs(self.movimento_contador) > 450: #mexer aqui para movimentação
+            self.rect.y -= self.movimento_direcao - 4 #talvez mudar aqui
             self.movimento_direcao *= -1
             self.movimento_contador *= self.movimento_direcao
-            self.rect.y += self.movimento_direcao
+            #self.rect.y -= self.movimento_direcao - 4
 
         # Se o meteoro passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades

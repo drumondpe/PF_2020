@@ -6,7 +6,7 @@
 ### Problemas ### 
 #não está mudando de tela após apertar K_SPACE
 #imagem PNG
-#melhorar movimentação
+#melhorar movimentação, está descendo mas bugando no canto
 #disparo bugado
 
 
@@ -75,7 +75,7 @@ def rodar_jogo():
         
             tela.fill(CORES.preto)
             #mapa
-            segunda_tela = funcoes.segunda_tela(tela, NAVE)
+            segunda_tela = funcoes.segunda_tela(tela, NAVE, pontos)
 
             sprites.update()
             sprites.draw(tela) #desenha todos
@@ -88,9 +88,12 @@ def rodar_jogo():
 
             #fará a colisão:
             for alien in acertou_disparo:
+                soma_ponto = True #se for True, irá add 10 pontos na função 'pontos'
+                pontos += funcoes.faz_pontos(soma_ponto) #precisa colocar isso aqui lá na função 'segunda tela'
                 acerto = Alien(x, y)
                 sprites.add(acerto)
                 aliens_colisao.add(acerto)
+                #provalmente adicionar a pontuação aqui
 
 
 

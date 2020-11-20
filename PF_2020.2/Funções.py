@@ -42,12 +42,12 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
-def segunda_tela(tela, NAVE): #apresenta a segunda tela
+def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     #fonte
     fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_vidas)
     #textos
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.branco)
-    pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format('PONTUACAO'), True, CORES.branco) ###MEXER NA PONTUAÇÃO AQUI
+    pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.branco) ###MEXER NA PONTUAÇÃO AQUI
 
     #para mexer na tela, mexer aqui 
     fundo = pygame.image.load('Fundo_galáxia.png').convert()
@@ -91,6 +91,14 @@ def gameover_tela(tela):
     #preenche a tela com frases
     tela.blit(game_over, (CONFIG.largura_tela // 2 - game_over.get_width() // 2, 180))
     tela.blit(barra_recomeçar, (CONFIG.largura_tela // 2 - barra_recomeçar.get_width() // 2, 380))
+
+def faz_pontos(soma_ponto):
+    aumenta_ponto = 0
+    if soma_ponto:
+        aumenta_ponto += 10
+    return aumenta_ponto
+
+
 
 def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE):
 
