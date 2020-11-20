@@ -9,7 +9,7 @@ vetor = pygame.math.Vector2
 class Config():
     #define as configurações básicas
     def __init__(self):
-        self.titulo = 'Star Fight'
+        self.titulo = 'X-Wing Fight'
 
         self.largura_tela = 1000
         self.altura_tela = 650
@@ -29,13 +29,15 @@ class Cores():
         self.laranja = (255, 165, 0)
         self.amarelo = (255, 255, 0)
         self.rosa = (255, 0, 255)
+        self.nomes = (220, 0, 0)
+        self.roxo = (220, 0, 255)
 
 class Textos(): 
     #define tamanho e fonte dos textos
     def __init__(self):
 
         self.fonte = 'Futura ZBlk BT'
-        self.tamanho_grande = 65
+        self.tamanho_grande = 75
         self.tamanho_medio = 55
         self.tamanho_nome = 30
         self.tamanho_vidas = 25

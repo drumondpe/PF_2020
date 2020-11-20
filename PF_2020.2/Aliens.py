@@ -31,7 +31,7 @@ class Alien(pygame.sprite.Sprite):
         #atualiza a posição do alien  
         self.rect.x += self.movimento_direcao
         #
-        self.movimento_contador += 8
+        self.movimento_contador += 12
         if self.movimento_contador == 600: #mexer aqui para movimentação #900
             self.movimento_contador = 0
             self.rect.y -= self.movimento_direcao - 15 #talvez mudar aqui

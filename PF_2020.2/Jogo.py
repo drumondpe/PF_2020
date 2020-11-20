@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#add Boss
+#dica Toshi
+#add Boss (pontuação 700!)
 
 ### Problemas ### 
 #não está mudando de tela após apertar K_SPACE
+#ordem de desenhos
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
@@ -29,7 +31,7 @@ RODAR = True
 def rodar_jogo():
     #inicializa o jogo
     tela = pygame.display.set_mode((CONFIG.largura_tela, CONFIG.altura_tela))
-    pygame.display.set_caption('Space Invaders')
+    pygame.display.set_caption('X-Wing Fight')
     relogio = pygame.time.Clock()
 
     #booleanos para jogar
@@ -71,6 +73,7 @@ def rodar_jogo():
         
             tela.fill(CORES.preto)
             #mapa
+
             segunda_tela = funcoes.segunda_tela(tela, NAVE, pontos)
 
             sprites.update()

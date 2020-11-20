@@ -10,8 +10,8 @@ from Configurações import Cores
 from Player import Nave
 from Aliens import Alien
 
-linhas = 5
-colunas = 9
+linhas = 7
+colunas = 10
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
@@ -24,11 +24,12 @@ def primeira_tela(tela): #apresenta a primeira tela
     fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
 
     #textos da primeira tela
-    titulo_do_jogo = fonte_texto_tela_inicial.render(CONFIG.titulo, True, CORES.vermelho)
-    barra_comecar = fonte_texto_medio.render('Barra de Espaço para começar!', True, CORES.azul_marinho)
-    nome_criador1 = fonte_texto_nomes.render('Henrry Miguel', True, CORES.verde)
-    nome_criador2 = fonte_texto_nomes.render('Luiz Durand', True, CORES.verde)
-    nome_criador3 = fonte_texto_nomes.render('Pedro Drumond', True, CORES.verde)
+    titulo_do_jogo = fonte_texto_tela_inicial.render(CONFIG.titulo, True, CORES.rosa)
+    instrucao = fonte_texto_medio.render('Destrua os caças Tie!', True, CORES.roxo)
+    barra_comecar = fonte_texto_medio.render('Barra de espaço para começar', True, CORES.roxo)
+    nome_criador1 = fonte_texto_nomes.render('Henrry Miguel', True, CORES.nomes)
+    nome_criador2 = fonte_texto_nomes.render('Luiz Durand', True, CORES.nomes)
+    nome_criador3 = fonte_texto_nomes.render('Pedro Drumond', True, CORES.nomes)
     insper = fonte_texto_nomes.render('ENG - INSPER 2020.2', True, CORES.vermelho)
 
     #posição na primeira tela
@@ -38,26 +39,27 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(fundo, (0, 0)) #preenche a tela com imagem
 
     #preenche a tela com frases
-    tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 85))
-    tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 180))
-    tela.blit(nome_criador1, (CONFIG.largura_tela // 2 - nome_criador1.get_width() // 2, 480))
-    tela.blit(nome_criador2, (CONFIG.largura_tela // 2 - nome_criador2.get_width() // 2, 520))
-    tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
+    tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 60))
+    tela.blit(instrucao, (CONFIG.largura_tela // 2 - instrucao.get_width() // 2, 180))
+    tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 250))
+    tela.blit(nome_criador1, (CONFIG.largura_tela // 2 - nome_criador1.get_width() // 2, 525))
+    tela.blit(nome_criador2, (CONFIG.largura_tela // 2 - nome_criador2.get_width() // 2, 550))
+    tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 575))
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
     #imagens
     
-    imagem_estrela_da_morte = pygame.image.load('Estrela-da-morte.png').convert_alpha()
-    imagem_estrela_da_morte = pygame.transform.scale(imagem_estrela_da_morte, (200, 200))
-    tela.blit(imagem_estrela_da_morte, (760, 30))
+    imagem_estrela_da_morte = pygame.image.load('Estrela-da-morte2.png').convert_alpha()
+    imagem_estrela_da_morte = pygame.transform.scale(imagem_estrela_da_morte, (210, 200)) #dimensão
+    tela.blit(imagem_estrela_da_morte, (780, 30)) #posição
 
-    imagem_XWing = pygame.image.load('teste.png').convert_alpha()
-    imagem_XWing = pygame.transform.scale(imagem_XWing, (340, 200))
-    tela.blit(imagem_XWing, (80, 250))
+    imagem_XWing = pygame.image.load('Nave2.png').convert_alpha()
+    imagem_XWing = pygame.transform.scale(imagem_XWing, (340, 200)) 
+    tela.blit(imagem_XWing, (50, 430)) 
 
-    imagem_star_fighter = pygame.image.load('Alien.png').convert_alpha()
-    imagem_star_fighter = pygame.transform.scale(imagem_star_fighter, (340, 200))
-    tela.blit(imagem_star_fighter, (610, 240))
+    imagem_tie_fighter = pygame.image.load('Alien2.png').convert_alpha()
+    imagem_tie_fighter = pygame.transform.scale(imagem_tie_fighter, (260, 260))
+    tela.blit(imagem_tie_fighter, (650, 380))
 
 def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     #fonte
@@ -91,7 +93,7 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
 def cria_aliens(sprites, aliens_colisao): #gera os aliens  
     for linha in range(linhas): #acessa a linha
         for item in range(colunas):
-            alien = Alien(100 + item * 100, 100 + linha * 70)
+            alien = Alien(50 + item * 100, 10 + linha * 70)
             sprites.add(alien)
             aliens_colisao.add(alien)
 
