@@ -4,7 +4,6 @@
 #add Boss (pontuação 700!)
 
 ### Problemas ### 
-#não está mudando de tela após apertar K_SPACE (dica Toshi, ultimo handout)
 #ordem de desenhos
 
 ### Plus ###
@@ -34,13 +33,12 @@ pygame.mixer.init()
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
-#RODAR = True
 
 
 def rodar_init(tela):
     estado = INIT
     while estado == INIT:
-        #DEVE ABRIR PRIMEIRA TELA
+        #DEVE ABRIR A PRIMEIRA TELA
         funcoes.primeira_tela(tela)
         
         estado = funcoes.eventos_init(estado)
@@ -52,7 +50,7 @@ def rodar_game_over(tela):
     estado = GAME_OVER
     while estado == GAME_OVER:
         #TELA GAME OVER        
-        game_over_tela = funcoes.gameover_tela(tela) #não está mudando de tela
+        game_over_tela = funcoes.gameover_tela(tela)
 
         estado = funcoes.eventos_game_over(estado) #verifica os eventos
         
@@ -62,28 +60,15 @@ def rodar_game_over(tela):
 
 def rodar_jogo(tela):
     relogio = pygame.time.Clock()
-
-    #booleanos para jogar
-    # RODAR = True
-    # TELA_INICIAL = True
-    # TELA_SEGUNDA = False
-    # TELA_GAME_OVER = False
     COLISAO_ALIEN = False #usar para quando houver colisão do alien com a nave
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com o alien
-
 
     ### INICIA OBJETOS ###
     sprites = pygame.sprite.Group()
     aliens_colisao = pygame.sprite.Group()
     disparos_sprite = pygame.sprite.Group()
-    ###
     NAVE = Nave(CONFIG, sprites, disparos_sprite) #cria a nave
     funcoes.cria_aliens(sprites, aliens_colisao) #cria os aliens
-
-    #for cada_alien in range (10): #AQUI CRIA OS ALIENS
-    #    alien = Alien()
-    #    sprites.add(alien)
-    #    aliens_colisao.add(alien)
 
     nave = NAVE
     sprites.add(nave)
@@ -114,20 +99,11 @@ def rodar_jogo(tela):
             soma_ponto = True #se for True, irá add 10 pontos na função 'pontos'
             pontos += funcoes.faz_pontos(soma_ponto) #precisa colocar isso aqui lá na função 'segunda tela'
 
-            #acerto = Alien(x, y)
-            #sprites.add(acerto)
-            #aliens_colisao.add(acerto)
-            #provalmente adicionar a pontuação aqui
-
         if len(colisao)>0: #reduz as vidas conforme as colisões
             NAVE.vidas -= 1
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
-            # TELA_SEGUNDA = False
-            # TELA_GAME_OVER = True    
-
-            # pygame.display.update()
     
         pygame.display.flip()
     return estado

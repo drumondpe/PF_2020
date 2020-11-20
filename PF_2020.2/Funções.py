@@ -100,6 +100,7 @@ def cria_aliens(sprites, aliens_colisao): #gera os aliens
 
 
 def gameover_tela(tela):
+    tela.fill(CORES.preto) #preenche a tela com a cor preta
     #configurações das fontes
     fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
     fonte_texto_nomes = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
