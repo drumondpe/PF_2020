@@ -6,6 +6,12 @@ import math
 import pygame
 vetor = pygame.math.Vector2
 
+INIT = 0
+GAME = 1
+GAME_OVER = 2
+VENCEDOR = 3
+QUIT = 4
+
 class Config():
     #define as configurações básicas
     def __init__(self):

@@ -7,6 +7,7 @@ import pygame
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
+from Configurações import INIT, GAME, GAME_OVER, QUIT
 from Player import Nave
 from Aliens import Alien
 
@@ -119,60 +120,68 @@ def faz_pontos(soma_ponto):
     return aumenta_ponto
 
 
+def eventos_init(estado):
+    #verifica se apertou alguma tecla
+    for event in pygame.event.get():
 
-def eventos(RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER, NAVE):
+        #verifica se usuário saiu
+        if event.type == pygame.QUIT:
+            return QUIT
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE: #se pressionar barra de espaço, mudará para a próxima tela
+                #pygame.mixer.music.load('xxx') pega outra musica
+                #pygame.mixer.music.play() load nova música
+
+                return GAME
+    return estado
+
+
+def eventos_game_over(estado):
+    #verifica se apertou alguma tecla
+    for event in pygame.event.get():
+
+        #verifica se usuário saiu
+        if event.type == pygame.QUIT:
+            return QUIT
+        
+        #vamos ver se o player vai querer jogar de novo
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                return GAME
+    return estado
+
+
+def eventos_game(estado, NAVE):
 
     #verifica se apertou alguma tecla
     for event in pygame.event.get():
 
         #verifica se usuário saiu
         if event.type == pygame.QUIT:
-            RODAR = False
-            break
+            return QUIT
 
-        #se a tela inicial for True, vai verificar:
-        if TELA_INICIAL: #puxar essa variável lá de jogo
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE: #se pressionar barra de espaço, mudará para a próxima tela
-                    #pygame.mixer.music.load('xxx') pega outra musica
-                    #pygame.mixer.music.play() load nova música
+        #aqui vamos criar movimentação e importar o player e mobs
+        #vê se apertou alguma tecla
+        if event.type == pygame.KEYDOWN:
 
-                    TELA_INICIAL = False
-                    TELA_SEGUNDA = True
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                NAVE.velocidadeX -= NAVE.aceleracaoX
 
-        elif TELA_SEGUNDA:
-            #aqui vamos criar movimentação e importar o player e mobs
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                NAVE.velocidadeX += NAVE.aceleracaoX         
 
-            #vê se apertou alguma tecla
-            if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                NAVE.tiro()
 
-                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                    NAVE.velocidadeX -= NAVE.aceleracaoX
+        #vê se soltou alguma tecla
+        if event.type == pygame.KEYUP:
 
-                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                    NAVE.velocidadeX += NAVE.aceleracaoX         
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                NAVE.velocidadeX += NAVE.aceleracaoX
 
-                if event.key == pygame.K_SPACE:
-                    NAVE.tiro()
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                NAVE.velocidadeX -= NAVE.aceleracaoX
 
-
-            #vê se soltou alguma tecla
-            if event.type == pygame.KEYUP:
-
-                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                    NAVE.velocidadeX += NAVE.aceleracaoX
-
-                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                    NAVE.velocidadeX -= NAVE.aceleracaoX
-
-        elif TELA_GAME_OVER:
-            #vamos ver se o player vai querer jogar de novo
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    TELA_GAME_OVER = False
-                    TELA_SEGUNDA = True
-
-
-    return RODAR, TELA_INICIAL, TELA_SEGUNDA, TELA_GAME_OVER
+    return estado
 
         
