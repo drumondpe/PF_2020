@@ -11,7 +11,7 @@ from Player import Nave
 from Aliens import Alien
 
 linhas = 5
-colunas = 5
+colunas = 9
 CONFIG = Config()
 TEXTOS = Textos()
 CORES = Cores()
@@ -32,8 +32,11 @@ def primeira_tela(tela): #apresenta a primeira tela
     insper = fonte_texto_nomes.render('ENG - INSPER 2020.2', True, CORES.vermelho)
 
     #posição na primeira tela
-    ###PUXAR A TELA LÁ DE JOGO
     tela.fill(CORES.preto) #preenche a tela com a cor preta
+    fundo = pygame.image.load('Fundo_galáxia.png').convert()
+    fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
+    tela.blit(fundo, (0, 0)) #preenche a tela com imagem
+
     #preenche a tela com frases
     tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 85))
     tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 180))
@@ -42,23 +45,38 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 560))
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
+    #imagens
+    
+    imagem_estrela_da_morte = pygame.image.load('Estrela-da-morte.png').convert_alpha()
+    imagem_estrela_da_morte = pygame.transform.scale(imagem_estrela_da_morte, (200, 200))
+    tela.blit(imagem_estrela_da_morte, (760, 30))
+
+    imagem_XWing = pygame.image.load('teste.png').convert_alpha()
+    imagem_XWing = pygame.transform.scale(imagem_XWing, (340, 200))
+    tela.blit(imagem_XWing, (80, 250))
+
+    imagem_star_fighter = pygame.image.load('Alien.png').convert_alpha()
+    imagem_star_fighter = pygame.transform.scale(imagem_star_fighter, (340, 200))
+    tela.blit(imagem_star_fighter, (610, 240))
+
 def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     #fonte
     fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_vidas)
     #textos
-    restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.branco)
-    pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.branco) ###MEXER NA PONTUAÇÃO AQUI
+    restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
+    pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa) ###MEXER NA PONTUAÇÃO AQUI
 
     #para mexer na tela, mexer aqui 
     fundo = pygame.image.load('Fundo_galáxia.png').convert()
     fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
     tela.fill(CORES.preto)
-    tela.blit(fundo, (0, 0))
+    tela.blit(fundo, (0, 0)) #preenche o fundo com preto
 
     foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
     foto_vida = pygame.transform.scale(foto_vida_errada, (25, 25))
 
     vertices = (0, 0, CONFIG.largura_tela, 30)
+
     pygame.draw.rect(tela, CORES.preto, vertices)
     tela.blit(restantes, (10, 7))
     tela.blit(pontuacao, (750, 7))

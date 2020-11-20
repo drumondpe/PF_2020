@@ -28,6 +28,7 @@ class Cores():
         self.verde = (0, 255, 0)
         self.laranja = (255, 165, 0)
         self.amarelo = (255, 255, 0)
+        self.rosa = (255, 0, 255)
 
 class Textos(): 
     #define tamanho e fonte dos textos

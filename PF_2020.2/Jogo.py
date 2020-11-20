@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#
+#add Boss
 
 ### Problemas ### 
 #não está mudando de tela após apertar K_SPACE
-#imagem PNG
-#melhorar movimentação, está descendo mas bugando no canto
-#disparo bugado
-
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
@@ -60,10 +56,10 @@ def rodar_jogo():
 
     nave = NAVE
     sprites.add(nave)
-    
+    pontos = 0
 
     funcoes.primeira_tela(tela)
-    #pygame.mixer.music.load('xxx')
+    #pygame.mixer.music.load('')
     #pygame.mixer.music.play()
     
     while RODAR:
@@ -90,12 +86,11 @@ def rodar_jogo():
             for alien in acertou_disparo:
                 soma_ponto = True #se for True, irá add 10 pontos na função 'pontos'
                 pontos += funcoes.faz_pontos(soma_ponto) #precisa colocar isso aqui lá na função 'segunda tela'
-                acerto = Alien(x, y)
-                sprites.add(acerto)
-                aliens_colisao.add(acerto)
+
+                #acerto = Alien(x, y)
+                #sprites.add(acerto)
+                #aliens_colisao.add(acerto)
                 #provalmente adicionar a pontuação aqui
-
-
 
             if len(colisao)>0: #reduz as vidas conforme as colisões
                 NAVE.vidas -= 1
