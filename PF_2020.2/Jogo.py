@@ -1,12 +1,19 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#dica Toshi
 #add Boss (pontuação 700!)
 
 ### Problemas ### 
-#não está mudando de tela após apertar K_SPACE
+#não está mudando de tela após apertar K_SPACE (dica Toshi, ultimo handout)
 #ordem de desenhos
+
+### Plus ###
+#musica de fundo na primeira tela
+#musica de fundo no jogo
+#musica de fundo na Estrela da morte
+#musica de fundo no game over
+#musica de fundo no vencedor
+#musica de fundo no disparo
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
