@@ -3,7 +3,7 @@
 ### Próximos passos ###
 #add Boss (pontuação 700!) acho que precisará de uma nova tela, ou se bater 700 pontos...
 
-### Problemas ### 
+### Problemas ###
 #ordem de desenhos
 
 ### Plus ###
@@ -40,7 +40,7 @@ def rodar_init(tela):
     while estado == INIT:
         #DEVE ABRIR A PRIMEIRA TELA
         funcoes.primeira_tela(tela)
-        
+
         estado = funcoes.eventos_init(estado)
         pygame.display.flip()
     return estado
@@ -49,11 +49,11 @@ def rodar_init(tela):
 def rodar_game_over(tela):
     estado = GAME_OVER
     while estado == GAME_OVER:
-        #TELA GAME OVER        
+        #TELA GAME OVER
         game_over_tela = funcoes.gameover_tela(tela)
 
         estado = funcoes.eventos_game_over(estado) #verifica os eventos
-        
+
         pygame.display.flip()
     return estado
 
@@ -76,20 +76,19 @@ def rodar_jogo(tela):
     pontos = 0
 
 
-
     estado = GAME
     while estado == GAME:
         #SEGUNDA TELA
         tela.fill(CORES.preto)
         #mapa
 
-        segunda_tela = funcoes.segunda_tela(tela, NAVE, pontos)
+        funcoes.segunda_tela(tela, NAVE, pontos)
 
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
 
         estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
-        
+
         colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
         acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
         #foi criado um dicionario que as chaves são os aliens e os valores os disparos
@@ -102,27 +101,29 @@ def rodar_jogo(tela):
         if len(colisao)>0: #reduz as vidas conforme as colisões
             NAVE.vidas -= 1
 
-        #if pontos == 700:
-            #estado = BOSS
+        if pontos == 700 or (pontos == 690 and NAVE.vidas == 2) or (pontos == 680 and NAVE.vidas == 1):
+            estado = BOSS
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
-    
-        pygame.display.flip()
-    return estado
 
-def rodar_jogo_boss(tela, sprites, disparos_sprite):
+        pygame.display.flip()
+    return estado, NAVE, pontos, sprites
+
+def rodar_jogo_boss(tela, NAVE, pontos, sprites):
     #pegar as coisas da funcao de cima e rodar a tela
     relogio = pygame.time.Clock()
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
     COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
-    pass
 
+    disparos_sprite = pygame.sprite.Group()
+
+    estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
         tela.fill(CORES.preto)
 
-        boss_tela = funcoes.boss_tela()
+        funcoes.boss_tela(tela, NAVE, pontos, BOSS)
 
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
@@ -131,15 +132,16 @@ def rodar_jogo_boss(tela, sprites, disparos_sprite):
 
         #fazer uma nova colisao
         #MUDAR ESSAS DUAS LINHAS DE BAIXO
-        colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
-        acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
+        # colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
+        # acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
 
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
-    
+
         pygame.display.flip()
         pass
+    return estado
 
 
 #inicializa o jogo
@@ -156,11 +158,11 @@ while estado_jogo != QUIT:
         print(GAME)
         pygame.mixer.music.load('musica_game.mp3')
         pygame.mixer.music.play()
-        estado_jogo = rodar_jogo(tela)
+        estado_jogo, NAVE, pontos, sprites = rodar_jogo(tela)
     elif estado_jogo == BOSS:
         pygame.mixer.music.load('musica_boss.mp3')
         pygame.mixer.music.play()
-        estado_jogo = rodar_jogo_boss(tela) #NOVO 
+        estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites) #NOVO
     elif estado_jogo == GAME_OVER:
         pygame.mixer.music.load('musica_game_over.mp3')
         pygame.mixer.music.play()

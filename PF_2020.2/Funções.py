@@ -49,14 +49,14 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
     #imagens
-    
+
     imagem_estrela_da_morte = pygame.image.load('Estrela-da-morte2.png').convert_alpha()
     imagem_estrela_da_morte = pygame.transform.scale(imagem_estrela_da_morte, (210, 200)) #dimensão
     tela.blit(imagem_estrela_da_morte, (780, 30)) #posição
 
     imagem_XWing = pygame.image.load('Nave2.png').convert_alpha()
-    imagem_XWing = pygame.transform.scale(imagem_XWing, (340, 200)) 
-    tela.blit(imagem_XWing, (50, 430)) 
+    imagem_XWing = pygame.transform.scale(imagem_XWing, (340, 200))
+    tela.blit(imagem_XWing, (50, 430))
 
     imagem_tie_fighter = pygame.image.load('Alien2.png').convert_alpha()
     imagem_tie_fighter = pygame.transform.scale(imagem_tie_fighter, (260, 260))
@@ -69,7 +69,7 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa)
 
-    #para mexer na tela, mexer aqui 
+    #para mexer na tela, mexer aqui
     fundo = pygame.image.load('Fundo_galáxia.png').convert()
     fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
     tela.fill(CORES.preto)
@@ -91,14 +91,14 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     for vida in range(NAVE.vidas):
         tela.blit(foto_vida, (posicao, 6))
         posicao+=30
-    
+
 def boss_tela(tela, NAVE, pontos, BOSS):
     #fonte
     fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
     #textos
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa)
-    #para mexer na tela, mexer aqui 
+    #para mexer na tela, mexer aqui
     fundo = pygame.image.load('Fundo_galáxia.png').convert()
     fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
     tela.fill(CORES.preto)
@@ -108,7 +108,7 @@ def boss_tela(tela, NAVE, pontos, BOSS):
 
     foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
     foto_vida = pygame.transform.scale(foto_vida_errada, (30, 30))
-
+ 
     vertices = (0, 0, CONFIG.largura_tela, 40)
 
     pygame.draw.rect(tela, CORES.preto, vertices)
@@ -122,7 +122,7 @@ def boss_tela(tela, NAVE, pontos, BOSS):
         posicao+=30
 
 
-def cria_aliens(sprites, aliens_colisao): #gera os aliens  
+def cria_aliens(sprites, aliens_colisao): #gera os aliens
     for linha in range(linhas): #acessa a linha
         for item in range(colunas):
             alien = Alien(50 + item * 100, 10 + linha * 70)
@@ -173,7 +173,7 @@ def eventos_game_over(estado):
         #verifica se usuário saiu
         if event.type == pygame.QUIT:
             return QUIT
-        
+
         #vamos ver se o player vai querer jogar de novo
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
@@ -198,7 +198,7 @@ def eventos_game(estado, NAVE):
                 NAVE.velocidadeX -= NAVE.aceleracaoX
 
             if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                NAVE.velocidadeX += NAVE.aceleracaoX         
+                NAVE.velocidadeX += NAVE.aceleracaoX
 
             if event.key == pygame.K_SPACE:
                 NAVE.tiro()
