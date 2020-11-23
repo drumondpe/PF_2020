@@ -11,7 +11,7 @@ CORES = Cores()
 
 class Death_star(pygame.sprite.Sprite):
     #classe que define a Estrela da Morte
-    def __init__(self, CONFIG, sprites): disparos_sprite
+    def __init__(self, CONFIG, sprites): #disparos_sprite
         super().__init__()
 
         self.CONFIG = CONFIG

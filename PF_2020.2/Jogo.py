@@ -58,6 +58,7 @@ def rodar_game_over(tela):
     return estado
 
 
+
 def rodar_jogo(tela):
     relogio = pygame.time.Clock()
     COLISAO_ALIEN = False #usar para quando houver colisão do alien com a nave
@@ -74,14 +75,7 @@ def rodar_jogo(tela):
     sprites.add(nave)
     pontos = 0
 
-def rodar_jogo_boss(tela, sprites, disparos_sprite):
-    #pegar as coisas da funcao de cima e rodar a tela
-    relogio = pygame.time.Clock()
-    COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
-    COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
 
-
-    pass
 
     estado = GAME
     while estado == GAME:
@@ -116,6 +110,13 @@ def rodar_jogo_boss(tela, sprites, disparos_sprite):
     
         pygame.display.flip()
     return estado
+
+def rodar_jogo_boss(tela, sprites, disparos_sprite):
+    #pegar as coisas da funcao de cima e rodar a tela
+    relogio = pygame.time.Clock()
+    COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
+    COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
+    pass
 
     while estado == BOSS:
     #TELA DO BOSS
@@ -152,6 +153,7 @@ while estado_jogo != QUIT:
         pygame.mixer.music.play()
         estado_jogo = rodar_init(tela)
     elif estado_jogo == GAME:
+        print(GAME)
         pygame.mixer.music.load('musica_game.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_jogo(tela)
