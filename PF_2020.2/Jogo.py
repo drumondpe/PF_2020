@@ -121,7 +121,6 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites):
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
-        tela.fill(CORES.preto)
 
         funcoes.boss_tela(tela, NAVE, pontos, BOSS)
 
@@ -154,18 +153,22 @@ while estado_jogo != QUIT:
         pygame.mixer.music.load('musica_primeira_tela.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_init(tela)
+
     elif estado_jogo == GAME:
         print(GAME)
         pygame.mixer.music.load('musica_game.mp3')
         pygame.mixer.music.play()
         estado_jogo, NAVE, pontos, sprites = rodar_jogo(tela)
+
     elif estado_jogo == BOSS:
         pygame.mixer.music.load('musica_boss.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites) #NOVO
+
     elif estado_jogo == GAME_OVER:
         pygame.mixer.music.load('musica_game_over.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_game_over(tela)
+        
     else:
         estado_jogo = QUIT
