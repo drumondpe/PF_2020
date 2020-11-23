@@ -22,7 +22,7 @@ import pygame
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
-from Configurações import INIT, GAME, GAME_OVER, VENCEDOR, QUIT
+from Configurações import INIT, GAME, GAME_OVER, VENCEDOR, QUIT, BOSS
 from Player import Nave
 from Aliens import Alien
 import Funções as funcoes
@@ -74,6 +74,10 @@ def rodar_jogo(tela):
     sprites.add(nave)
     pontos = 0
 
+def rodar_jogo_boss(tela):
+    #pegar as coisas da funcao de cima e rodar a tela
+    pass
+
     #pygame.mixer.music.load('')
     #pygame.mixer.music.play()
     
@@ -85,8 +89,8 @@ def rodar_jogo(tela):
 
         segunda_tela = funcoes.segunda_tela(tela, NAVE, pontos)
 
-        sprites.update()
-        sprites.draw(tela) #desenha todos
+        sprites.update() #mudar isso pra função da tela
+        sprites.draw(tela)
 
         estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
         
@@ -102,11 +106,38 @@ def rodar_jogo(tela):
         if len(colisao)>0: #reduz as vidas conforme as colisões
             NAVE.vidas -= 1
 
+        #if pontos == 700:
+            #estado = BOSS
+
         if NAVE.vidas <= 0:
             estado = GAME_OVER
     
         pygame.display.flip()
     return estado
+
+    while estado == BOSS:
+    #TELA DO BOSS
+        tela.fill(CORES.preto)
+
+        boss_tela = funcoes.boss_tela
+        sprites.update() #mudar isso pra função da tela
+        sprites.draw(tela)
+
+        estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
+
+        #fazer uma nova colisao
+        #MUDAR ESSAS DUAS LINHAS DE BAIXO
+        colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
+        acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
+
+
+
+
+        if NAVE.vidas <= 0:
+            estado = GAME_OVER
+    
+        pygame.display.flip()
+        pass
 
 
 #inicializa o jogo
@@ -116,9 +147,13 @@ pygame.display.set_caption('X-Wing Fight')
 estado_jogo = INIT
 while estado_jogo != QUIT:
     if estado_jogo == INIT:
+        #pygame.mixer.music.load('')
+        #pygame.mixer.music.play()
         estado_jogo = rodar_init(tela)
     elif estado_jogo == GAME:
         estado_jogo = rodar_jogo(tela)
+    elif estado_jogo == BOSS:
+        estado_jogo = rodar_jogo_boss(tela) #NOVO 
     elif estado_jogo == GAME_OVER:
         estado_jogo = rodar_game_over(tela)
     else:

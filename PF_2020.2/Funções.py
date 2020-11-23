@@ -7,7 +7,7 @@ import pygame
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
-from Configurações import INIT, GAME, GAME_OVER, QUIT
+from Configurações import INIT, GAME, GAME_OVER, QUIT, BOSS
 from Player import Nave
 from Aliens import Alien
 
@@ -91,6 +91,9 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     for vida in range(NAVE.vidas):
         tela.blit(foto_vida, (posicao, 6))
         posicao+=30
+    
+def boss_tela(tela, NAVE, pontos):
+    pass
 
 
 def cria_aliens(sprites, aliens_colisao): #gera os aliens  
@@ -132,9 +135,7 @@ def eventos_init(estado):
             return QUIT
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: #se pressionar barra de espaço, mudará para a próxima tela
-                #pygame.mixer.music.load('xxx') pega outra musica
-                #pygame.mixer.music.play() load nova música
-
+                
                 return GAME
     return estado
 

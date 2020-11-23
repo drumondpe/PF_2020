@@ -11,6 +11,7 @@ GAME = 1
 GAME_OVER = 2
 VENCEDOR = 3
 QUIT = 4
+BOSS = 5
 
 class Config():
     #define as configurações básicas
