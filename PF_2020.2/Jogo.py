@@ -74,13 +74,15 @@ def rodar_jogo(tela):
     sprites.add(nave)
     pontos = 0
 
-def rodar_jogo_boss(tela):
+def rodar_jogo_boss(tela, sprites, disparos_sprite):
     #pegar as coisas da funcao de cima e rodar a tela
+    relogio = pygame.time.Clock()
+    COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
+    COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
+
+
     pass
 
-    #pygame.mixer.music.load('')
-    #pygame.mixer.music.play()
-    
     estado = GAME
     while estado == GAME:
         #SEGUNDA TELA
@@ -119,7 +121,8 @@ def rodar_jogo_boss(tela):
     #TELA DO BOSS
         tela.fill(CORES.preto)
 
-        boss_tela = funcoes.boss_tela
+        boss_tela = funcoes.boss_tela()
+
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
 
@@ -129,8 +132,6 @@ def rodar_jogo_boss(tela):
         #MUDAR ESSAS DUAS LINHAS DE BAIXO
         colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
         acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
-
-
 
 
         if NAVE.vidas <= 0:
@@ -147,14 +148,20 @@ pygame.display.set_caption('X-Wing Fight')
 estado_jogo = INIT
 while estado_jogo != QUIT:
     if estado_jogo == INIT:
-        #pygame.mixer.music.load('')
-        #pygame.mixer.music.play()
+        pygame.mixer.music.load('musica_primeira_tela.mp3')
+        pygame.mixer.music.play()
         estado_jogo = rodar_init(tela)
     elif estado_jogo == GAME:
+        pygame.mixer.music.load('musica_game.mp3')
+        pygame.mixer.music.play()
         estado_jogo = rodar_jogo(tela)
     elif estado_jogo == BOSS:
+        pygame.mixer.music.load('musica_boss.mp3')
+        pygame.mixer.music.play()
         estado_jogo = rodar_jogo_boss(tela) #NOVO 
     elif estado_jogo == GAME_OVER:
+        pygame.mixer.music.load('musica_game_over.mp3')
+        pygame.mixer.music.play()
         estado_jogo = rodar_game_over(tela)
     else:
         estado_jogo = QUIT
