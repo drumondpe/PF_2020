@@ -11,7 +11,7 @@ CORES = Cores()
 
 class Death_star(pygame.sprite.Sprite):
     #classe que define a Estrela da Morte
-    def __init__(self, CONFIG, sprites): #disparos_sprite
+    def __init__(self, CONFIG, sprites, disparos_sprite): #disparos_sprite
         super().__init__()
 
         self.CONFIG = CONFIG
@@ -23,8 +23,9 @@ class Death_star(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = CONFIG.largura_tela / 2
         self.rect.bottom = CONFIG.altura_tela - 10
-        self.velocidadeX = 0
-        self.aceleracaoX = 2.5 #controla a velocidade da nave
+        self.movimento_direcao = 1
+        self.movimento_contador = 0
+        self.aceleracaoX = 2.5 #controla a velocidade do boss
 
         self.sprites = sprites
         #disparo da Death Star
@@ -34,13 +35,21 @@ class Death_star(pygame.sprite.Sprite):
  
     def update(self): #MUDAR
         #atualiza a posição da estrela da morte
-        self.rect.x += self.velocidadeX
+        self.rect.x += self.movimento_direcao
 
         #Mantem dentro da tela
-        if self.rect.right > CONFIG.largura_tela:
-            self.rect.right = CONFIG.largura_tela
-        if self.rect.left < 0:
-            self.rect.left = 0
+        self.movimento_contador += 6 #velocidade do boss
+        if self.movimento_contador == 600:
+            self.movimento_contador = 0
+            self.movimento_direcao *= -1
+
+        # novas posições e velocidades, talvez apagar***
+        if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:
+            self.rect.x = random.randint(0, CONFIG.largura_tela-20) #LARGURA_alien = 20
+            self.rect.y = random.randint(-100, -30) #ALTURA_alien = 30
+            self.speedx = random.randint(-3, 3)
+            self.speedy = random.randint(2, 9)
+
 
     def tiro(self):
         novo_disparo2 = Disparo2(self.imagem_disparo, self.rect.top, self.rect.centerx)

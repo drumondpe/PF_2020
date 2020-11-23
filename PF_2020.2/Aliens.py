@@ -36,8 +36,6 @@ class Alien(pygame.sprite.Sprite):
             self.movimento_contador = 0
             self.rect.y -= self.movimento_direcao - 15 #talvez mudar aqui
             self.movimento_direcao *= -1
-            #self.movimento_contador *= self.movimento_direcao
-            #self.rect.y -= self.movimento_direcao - 4
 
         # novas posições e velocidades
         if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:

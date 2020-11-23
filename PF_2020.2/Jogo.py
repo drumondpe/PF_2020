@@ -25,6 +25,7 @@ from Configurações import Cores
 from Configurações import INIT, GAME, GAME_OVER, VENCEDOR, QUIT, BOSS
 from Player import Nave
 from Aliens import Alien
+from Boss import Death_star
 import Funções as funcoes
 
 pygame.init()
@@ -110,27 +111,40 @@ def rodar_jogo(tela):
         pygame.display.flip()
     return estado, NAVE, pontos, sprites
 
-def rodar_jogo_boss(tela, NAVE, pontos, sprites):
+def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     #pegar as coisas da funcao de cima e rodar a tela
     relogio = pygame.time.Clock()
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
     COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
 
-    disparos_sprite = pygame.sprite.Group()
 
+    sprites = sprites #irá desenhar tudo
+    disparos_sprite = disparos_sprite #todos os disparos
+    #tem mais um sprite aqui
+
+    BOSS = Death_star(CONFIG, sprites) #cria o BOSS
+    sprites.add(BOSS)
+
+    #serão criados no estado 'BOSS'
+    #disparos_no_boss = pygame.sprite.Group() #disparos que acertam o boss
+    #disparos_na_nave = pygame.sprite.Group() #disparos que acertam a nave
+
+    #sprites_nave_boss.add(NAVE)
+    #sprites_nave_boss.add(BOSS)
+    
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
 
-        funcoes.boss_tela(tela, NAVE, pontos, BOSS)
-
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
 
-        estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
+        estado = funcoes.eventos_boss(estado, NAVE, BOSS) #verifica os eventos
 
         #fazer uma nova colisao
         #MUDAR ESSAS DUAS LINHAS DE BAIXO
+        colidiu_disparo_boss = pygame.sprite.spritecollide(BOSS, disparos_sprite, True)
+        colidiu_disparo2_nave = pygame.sprite.spritecollide(NAVE, disparos_sprite, True)
         # colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
         # acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
 
@@ -169,6 +183,6 @@ while estado_jogo != QUIT:
         pygame.mixer.music.load('musica_game_over.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_game_over(tela)
-        
+
     else:
         estado_jogo = QUIT

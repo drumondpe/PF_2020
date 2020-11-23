@@ -10,6 +10,8 @@ from Configurações import Cores
 from Configurações import INIT, GAME, GAME_OVER, QUIT, BOSS
 from Player import Nave
 from Aliens import Alien
+from Boss import Death_star
+
 
 linhas = 7
 colunas = 10
@@ -156,6 +158,40 @@ def eventos_game_over(estado):
 
 
 def eventos_game(estado, NAVE):
+
+    #verifica se apertou alguma tecla
+    for event in pygame.event.get():
+
+        #verifica se usuário saiu
+        if event.type == pygame.QUIT:
+            return QUIT
+
+        #aqui vamos criar movimentação e importar o player e mobs
+        #vê se apertou alguma tecla
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                NAVE.velocidadeX -= NAVE.aceleracaoX
+
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                NAVE.velocidadeX += NAVE.aceleracaoX
+
+            if event.key == pygame.K_SPACE:
+                NAVE.tiro()
+
+        #vê se soltou alguma tecla
+        if event.type == pygame.KEYUP:
+
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                NAVE.velocidadeX += NAVE.aceleracaoX
+
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                NAVE.velocidadeX -= NAVE.aceleracaoX
+
+    return estado
+
+
+def eventos_boss(estado, NAVE, BOSS):
 
     #verifica se apertou alguma tecla
     for event in pygame.event.get():
