@@ -26,6 +26,7 @@ class Death_star(pygame.sprite.Sprite):
         self.movimento_direcao = 1
         self.movimento_contador = 0
         self.aceleracaoX = 2.5 #controla a velocidade do boss
+        self.vidas = 10
 
         self.sprites = sprites
         #disparo da Death Star

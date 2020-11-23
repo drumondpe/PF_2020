@@ -141,13 +141,16 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
 
         estado = funcoes.eventos_boss(estado, NAVE, BOSS) #verifica os eventos
 
-        #fazer uma nova colisao
-        #MUDAR ESSAS DUAS LINHAS DE BAIXO
+
         colidiu_disparo_boss = pygame.sprite.spritecollide(BOSS, disparos_sprite, True)
         colidiu_disparo2_nave = pygame.sprite.spritecollide(NAVE, disparos_sprite, True)
-        # colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
-        # acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
+    
+        if len(colidiu_disparo2_nave) > 0:
+            NAVE.vidas -= 1
 
+        #FAZER UM IF PARA DIMINUIR A VIDA DO BOSS, falta mostrar a vida dele
+        if len(colidiu_disparo_boss) > 0:
+            BOSS.vidas -= 1
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
@@ -177,7 +180,7 @@ while estado_jogo != QUIT:
     elif estado_jogo == BOSS:
         pygame.mixer.music.load('musica_boss.mp3')
         pygame.mixer.music.play()
-        estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites) #NOVO
+        estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite) #NOVO
 
     elif estado_jogo == GAME_OVER:
         pygame.mixer.music.load('musica_game_over.mp3')
