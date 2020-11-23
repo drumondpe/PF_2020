@@ -64,7 +64,7 @@ def primeira_tela(tela): #apresenta a primeira tela
 
 def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     #fonte
-    fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_vidas)
+    fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
     #textos
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa) ###MEXER NA PONTUAÇÃO AQUI
@@ -75,17 +75,19 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     tela.fill(CORES.preto)
     tela.blit(fundo, (0, 0)) #preenche o fundo com preto
 
-    foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
-    foto_vida = pygame.transform.scale(foto_vida_errada, (25, 25))
+    #DESENHAR AS NAVES AQUI
 
-    vertices = (0, 0, CONFIG.largura_tela, 30)
+    foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
+    foto_vida = pygame.transform.scale(foto_vida_errada, (30, 30))
+
+    vertices = (0, 0, CONFIG.largura_tela, 40)
 
     pygame.draw.rect(tela, CORES.preto, vertices)
-    tela.blit(restantes, (10, 7))
-    tela.blit(pontuacao, (750, 7))
+    tela.blit(restantes, (10, 11))
+    tela.blit(pontuacao, (750, 11))
 
     #desenha uma vida na tela
-    posicao = 150
+    posicao = 175
     for vida in range(NAVE.vidas):
         tela.blit(foto_vida, (posicao, 6))
         posicao+=30
@@ -184,5 +186,3 @@ def eventos_game(estado, NAVE):
                 NAVE.velocidadeX -= NAVE.aceleracaoX
 
     return estado
-
-        

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#add Boss (pontuação 700!)
+#add Boss (pontuação 700!) acho que precisará de uma nova tela, ou se bater 700 pontos...
 
 ### Problemas ### 
 #ordem de desenhos
@@ -123,7 +123,3 @@ while estado_jogo != QUIT:
         estado_jogo = rodar_game_over(tela)
     else:
         estado_jogo = QUIT
-
-
-
-

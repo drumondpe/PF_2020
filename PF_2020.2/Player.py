@@ -25,7 +25,7 @@ class Nave(pygame.sprite.Sprite):
         self.rect.centerx = CONFIG.largura_tela / 2
         self.rect.bottom = CONFIG.altura_tela - 10
         self.velocidadeX = 0
-        self.aceleracaoX = 2.5 #controla a velocidade da nave
+        self.aceleracaoX = 3 #controla a velocidade da nave
         self.vidas = 3
 
         self.sprites = sprites
