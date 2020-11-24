@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#vida do Boss
 #Boss precisa atirar
-#life bar
 
 ### Problemas ###
 #ordem de desenhos
@@ -68,6 +66,7 @@ def rodar_vencedor(tela):
         pygame.display.flip()
     return estado
 
+
 def rodar_jogo(tela):
     relogio = pygame.time.Clock()
     COLISAO_ALIEN = False #usar para quando houver colisão do alien com a nave
@@ -83,7 +82,6 @@ def rodar_jogo(tela):
     nave = NAVE
     sprites.add(nave)
     pontos = 0
-
 
     estado = GAME
     while estado == GAME:
@@ -119,28 +117,26 @@ def rodar_jogo(tela):
         pygame.display.flip()
     return estado, NAVE, pontos, sprites, disparos_sprite
 
+
 def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     #pegar as coisas da funcao de cima e rodar a tela
     relogio = pygame.time.Clock()
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
     COLISAO_DISPARO2 = False #usar para quando houver colisão do disparo2 com a nave
 
-
     sprites = sprites #irá desenhar tudo
     disparos_sprite = disparos_sprite #todos os disparos
-    sprites_NAVE_e_BOSS = pygame.sprite.Group()
+    #sprites_NAVE_e_BOSS = pygame.sprite.Group()
     #tem mais um sprite aqui
 
     BOSS = Death_star(CONFIG, sprites, disparos_sprite) #cria o BOSS
     sprites.add(BOSS)
-    sprites_NAVE_e_BOSS.add(NAVE) #NAVE e BOSS foram adicionados num sprite para verificar a colisão depois
-    sprites_NAVE_e_BOSS.add(BOSS)
-    
-    
 
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
+
+        #talvez chamar o segunda tela aqui
 
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
@@ -149,14 +145,12 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
 
         estado = funcoes.eventos_boss(estado, NAVE, BOSS) #verifica os eventos
 
-
-        colidiu_disparo_boss = pygame.sprite.spritecollide(BOSS, disparos_sprite, True)
-        colidiu_disparo2_nave = pygame.sprite.spritecollide(NAVE, disparos_sprite, True)
+        Disparo_acertou_o_BOSS = pygame.sprite.spritecollide(BOSS, disparos_sprite, True) #disparos da nave que acertaram o boss
+        Disparo2_acertou_a_NAVE = pygame.sprite.spritecollide(NAVE, disparos_sprite, True) #disparos do boss que acertaram a nave
     
-        if len(colidiu_disparo2_nave) > 0:
+        if len(Disparo2_acertou_a_NAVE) > 0:
             NAVE.vidas -= 1
 
-        #FAZER UM IF PARA DIMINUIR A VIDA DO BOSS, falta mostrar a vida dele
         if len(colidiu_disparo_boss) > 0:
             BOSS.vidas -= 1
 
