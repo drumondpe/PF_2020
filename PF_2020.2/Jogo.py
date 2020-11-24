@@ -99,7 +99,7 @@ def rodar_jogo(tela):
         estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
 
         colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
-        acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens
+        acertou_disparo = pygame.sprite.groupcollide(aliens_colisao, disparos_sprite, True, True) #verifica se houve colisão do disparo com os aliens (colisão entre sprites)
         #foi criado um dicionario que as chaves são os aliens e os valores os disparos
 
         #fará a colisão:
@@ -128,18 +128,16 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
 
     sprites = sprites #irá desenhar tudo
     disparos_sprite = disparos_sprite #todos os disparos
+    sprites_NAVE_e_BOSS = pygame.sprite.Group()
     #tem mais um sprite aqui
 
     BOSS = Death_star(CONFIG, sprites, disparos_sprite) #cria o BOSS
     sprites.add(BOSS)
-
-    #serão criados no estado 'BOSS'
-    #disparos_no_boss = pygame.sprite.Group() #disparos que acertam o boss
-    #disparos_na_nave = pygame.sprite.Group() #disparos que acertam a nave
-
-    #sprites_nave_boss.add(NAVE)
-    #sprites_nave_boss.add(BOSS)
+    sprites_NAVE_e_BOSS.add(NAVE) #NAVE e BOSS foram adicionados num sprite para verificar a colisão depois
+    sprites_NAVE_e_BOSS.add(BOSS)
     
+    
+
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
@@ -169,7 +167,6 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
             estado = VENCEDOR
 
         pygame.display.flip()
-        pass
     return estado
 
 
