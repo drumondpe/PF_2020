@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#tela game over
-#tela vencedor
+#estado do boss tem que mudar para vencedor
 
 ### Problemas ###
 #ordem de desenhos
@@ -187,6 +186,11 @@ while estado_jogo != QUIT:
         pygame.mixer.music.load('musica_boss.mp3')
         pygame.mixer.music.play()
         estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite) #NOVO
+
+    elif estado_jogo == VENCEDOR:
+        #pygame.mixer.music.load('musica_boss.mp3') #NOVA MUSICA
+        #pygame.mixer.music.play()
+        estado_jogo = rodar_vencedor(tela) #NOVO
 
     elif estado_jogo == GAME_OVER:
         pygame.mixer.music.load('musica_game_over.mp3')
