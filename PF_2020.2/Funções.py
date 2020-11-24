@@ -107,7 +107,6 @@ def cria_aliens(sprites, aliens_colisao): #gera os aliens
 
 
 def gameover_tela(tela):
-    tela.fill(CORES.preto) #preenche a tela com a cor preta
     #configurações das fontes
     fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
     fonte_texto_nomes = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
@@ -115,11 +114,33 @@ def gameover_tela(tela):
 
     #textos da tela game over
     game_over = fonte_texto_tela_inicial.render('GAME OVER!', True, CORES.vermelho)
-    barra_recomeçar = fonte_texto_tela_inicial.render('Pressione barra de espaço para recomeçar!', True, CORES.azul_marinho)
-
+    barra_recomeçar = fonte_texto_medio.render('Pressione barra de espaço para recomeçar!', True, CORES.laranja)
+    palpatine = pygame.image.load('Palpatine.jpg').convert()
+    palpatine = pygame.transform.scale(palpatine, (CONFIG.largura_tela, CONFIG.altura_tela))
     #preenche a tela com frases
+    tela.fill(CORES.preto)
+    tela.blit(palpatine, (0, 0))
     tela.blit(game_over, (CONFIG.largura_tela // 2 - game_over.get_width() // 2, 180))
     tela.blit(barra_recomeçar, (CONFIG.largura_tela // 2 - barra_recomeçar.get_width() // 2, 380))
+
+def vencedor_tela(tela):
+    #configurações das fontes
+    fonte_texto_tela_inicial = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_grande)
+    fonte_texto_nomes = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
+    fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
+
+    #textos da tela game over
+    voce_venceu = fonte_texto_tela_inicial.render('VOCÊ VENCEU!', True, CORES.azul_marinho)
+    parabens = fonte_texto_medio.render('Parabéns por vencer o Império', True, CORES.azul_marinho)
+    barra_recomeçar = fonte_texto_medio.render('Pressione barra de espaço para recomeçar!', True, CORES.laranja)
+    rebelde = pygame.image.load('Rebelde.jpg').convert()
+    rebelde = pygame.transform.scale(rebelde, (CONFIG.largura_tela, CONFIG.altura_tela))
+
+    tela.fill(CORES.preto)
+    tela.blit(rebelde, (0, 0))
+    tela.blit(voce_venceu, (CONFIG.largura_tela // 2 - voce_venceu.get_width() // 2, 180))
+    tela.blit(parabens, (CONFIG.largura_tela // 2 - parabens.get_width() // 2, 380))
+    tela.blit(barra_recomeçar, (CONFIG.largura_tela // 2 - barra_recomeçar.get_width() // 2, 580))
 
 def faz_pontos(soma_ponto):
     aumenta_ponto = 0

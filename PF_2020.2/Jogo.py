@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#criar nova tela para o Boss
-#add Boss (pontuação 700!) acho que precisará de uma nova tela, ou se bater 700 pontos...
+#tela game over
+#tela vencedor
 
 ### Problemas ###
 #ordem de desenhos
+#tela boss bugada
 
 ### Plus ###
-#musica de fundo na primeira tela
-#musica de fundo no jogo
-#musica de fundo na Estrela da morte
-#musica de fundo no game over
 #musica de fundo no vencedor
-#musica de fundo no disparo
+#som do disparo
 
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
@@ -59,7 +56,16 @@ def rodar_game_over(tela):
         pygame.display.flip()
     return estado
 
+def rodar_vencedor(tela):
+    estado = VENCEDOR
+    while estado == VENCEDOR:
+        #TELA VENCEDOR 
+        vencedor_tela = funcoes.vencedor_tela(tela)
 
+        estado = funcoes.eventos_game_over(estado) #verifica os eventos igual no game over e recomeça o jogo
+
+        pygame.display.flip()
+    return estado
 
 def rodar_jogo(tela):
     relogio = pygame.time.Clock()
