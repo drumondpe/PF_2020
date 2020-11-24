@@ -148,6 +148,19 @@ def faz_pontos(soma_ponto):
         aumenta_ponto += 10
     return aumenta_ponto
 
+def barra_vida(tela, BOSS):
+    if BOSS.vidas > 7:
+        barra_vida_cor = CORES.verde
+    elif BOSS.vidas > 4:
+        barra_vida_cor = CORES.amarelo
+    else:
+        barra_vida_cor = CORES.vermelho
+
+    pygame.draw.rect(tela, barra_vida_cor, (680, 30, barra_vida, 30))
+
+
+
+
 
 def eventos_init(estado):
     #verifica se apertou alguma tecla

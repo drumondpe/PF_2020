@@ -45,11 +45,11 @@ class Death_star(pygame.sprite.Sprite):
             self.movimento_direcao *= -1
 
         # novas posições e velocidades, talvez apagar***
-        if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:
-            self.rect.x = random.randint(0, CONFIG.largura_tela-20) #LARGURA_alien = 20
-            self.rect.y = random.randint(-100, -30) #ALTURA_alien = 30
-            self.speedx = random.randint(-3, 3)
-            self.speedy = random.randint(2, 9)
+        #if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:
+        #    self.rect.x = random.randint(0, CONFIG.largura_tela-20) #LARGURA_alien = 20
+        #    self.rect.y = random.randint(-100, -30) #ALTURA_alien = 30
+        #    self.speedx = random.randint(-3, 3)
+        #    self.speedy = random.randint(2, 9)
 
 
     def tiro(self):

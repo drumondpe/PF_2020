@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#estado do boss tem que mudar para vencedor
+#vida do Boss
+#Boss precisa atirar
+#life bar
 
 ### Problemas ###
 #ordem de desenhos
@@ -145,6 +147,8 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
 
+        funcoes.barra_vida(tela, BOSS) #talvez tirar a variável
+
         estado = funcoes.eventos_boss(estado, NAVE, BOSS) #verifica os eventos
 
 
@@ -160,6 +164,9 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
+
+        if BOSS.vidas <= 0:
+            estado = VENCEDOR
 
         pygame.display.flip()
         pass
