@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
+#criar nova tela para o Boss
 #add Boss (pontuação 700!) acho que precisará de uma nova tela, ou se bater 700 pontos...
 
 ### Problemas ###
@@ -109,7 +110,7 @@ def rodar_jogo(tela):
             estado = GAME_OVER
 
         pygame.display.flip()
-    return estado, NAVE, pontos, sprites
+    return estado, NAVE, pontos, sprites, disparos_sprite
 
 def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     #pegar as coisas da funcao de cima e rodar a tela
@@ -122,7 +123,7 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     disparos_sprite = disparos_sprite #todos os disparos
     #tem mais um sprite aqui
 
-    BOSS = Death_star(CONFIG, sprites) #cria o BOSS
+    BOSS = Death_star(CONFIG, sprites, disparos_sprite) #cria o BOSS
     sprites.add(BOSS)
 
     #serão criados no estado 'BOSS'
@@ -168,14 +169,13 @@ estado_jogo = INIT
 while estado_jogo != QUIT:
     if estado_jogo == INIT:
         pygame.mixer.music.load('musica_primeira_tela.mp3')
-        pygame.mixer.music.play()
+        pygame.mixer.music.play() 
         estado_jogo = rodar_init(tela)
 
     elif estado_jogo == GAME:
-        print(GAME)
         pygame.mixer.music.load('musica_game.mp3')
         pygame.mixer.music.play()
-        estado_jogo, NAVE, pontos, sprites = rodar_jogo(tela)
+        estado_jogo, NAVE, pontos, sprites, disparos_sprite = rodar_jogo(tela) #talvez tirar o disparos_sprite
 
     elif estado_jogo == BOSS:
         pygame.mixer.music.load('musica_boss.mp3')
