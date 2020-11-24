@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Próximos passos ###
-#Boss precisa atirar
+#disparos aleatórios do boss, conforme o tempo (boss atira a cada segundo, exemplo)
 
 ### Problemas ###
 #ordem de desenhos
