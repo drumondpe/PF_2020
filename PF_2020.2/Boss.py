@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pygame
-import random #mudar dps
+import random
 import time
 from Configurações import Config
 from Configurações import Textos
@@ -12,7 +12,7 @@ CORES = Cores()
 
 class Death_star(pygame.sprite.Sprite):
     #classe que define a Estrela da Morte
-    def __init__(self, CONFIG, sprites, disparos_sprite, disparos_sprite_boss): #disparos_sprite
+    def __init__(self, CONFIG, sprites, disparos_sprite, disparos_sprite_boss):
         super().__init__()
 
         self.CONFIG = CONFIG
@@ -26,7 +26,7 @@ class Death_star(pygame.sprite.Sprite):
         self.rect.bottom = CONFIG.altura_tela - 400
         self.movimento_direcao = 1
         self.movimento_contador = 0
-        self.aceleracaoX = 2.5 #controla a velocidade do boss
+        self.aceleracaoX = 2.5 
         self.vidas = 100
 
         self.sprites = sprites
@@ -40,7 +40,7 @@ class Death_star(pygame.sprite.Sprite):
         self.last_update = pygame.time.get_ticks()
         self.frame_ticks = 1200 #tempo para atirar
 
-    def update(self): #MUDAR
+    def update(self): #Atualiza o boss e os disparos
         #atualiza os disparos
         now = pygame.time.get_ticks() #momento atual
         elapsed_ticks = now - self.last_update  #quantos ticks se passaram desde a ultima mudança de frame
@@ -61,7 +61,7 @@ class Death_star(pygame.sprite.Sprite):
             self.movimento_contador = 0
             self.movimento_direcao *= -1
 
-    def tiro(self):
+    def tiro(self): #funcao que constroe o tiro do boss
         novo_disparo2 = Disparo2(self.imagem_disparo, self.rect.bottom, self.rect.centerx)
         self.sprites.add(novo_disparo2)
         self.disparos_sprite.add(novo_disparo2)
@@ -69,16 +69,16 @@ class Death_star(pygame.sprite.Sprite):
 
 class Disparo2(pygame.sprite.Sprite):
     #classe do disparo
-    def __init__(self, imagem, baixo, centerx): #se pá mudar para 'image'
+    def __init__(self, imagem, baixo, centerx):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = imagem
         self.rect = self.image.get_rect()
         self.rect.centerx = centerx
         self.rect.bottom = baixo
-        self.speedy = 5 #vel do disparo
+        self.speedy = 5 
 
-    def update(self):
+    def update(self): #atualiza a posição do disparo
         self.rect.y += self.speedy
         if self.rect.bottom < 0:
             self.kill() #tiro desaparece se passar da tela

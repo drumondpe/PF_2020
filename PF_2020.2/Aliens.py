@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import pygame
-import random #mudar dps
+import random
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
@@ -32,14 +31,14 @@ class Alien(pygame.sprite.Sprite):
         self.rect.x += self.movimento_direcao
         #
         self.movimento_contador += 12
-        if self.movimento_contador == 600: #mexer aqui para movimentação #900
+        if self.movimento_contador == 600:
             self.movimento_contador = 0
-            self.rect.y -= self.movimento_direcao - 15 #talvez mudar aqui
+            self.rect.y -= self.movimento_direcao - 15
             self.movimento_direcao *= -1
 
-        # novas posições e velocidades
+        #novas posições e velocidades
         if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:
-            self.rect.x = random.randint(0, CONFIG.largura_tela-20) #LARGURA_alien = 20
-            self.rect.y = random.randint(-100, -30) #ALTURA_alien = 30
+            self.rect.x = random.randint(0, CONFIG.largura_tela-20)
+            self.rect.y = random.randint(-100, -30)
             self.speedx = random.randint(-3, 3)
             self.speedy = random.randint(2, 9)

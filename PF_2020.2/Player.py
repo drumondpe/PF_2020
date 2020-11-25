@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import pygame
 import time
 from Configurações import Config
@@ -20,13 +19,13 @@ class Nave(pygame.sprite.Sprite):
         self.NAVE_largura = 50
         self.NAVE_altura = 50
 
-        self.imagem_grande = pygame.image.load('Nave.png').convert_alpha() #mudar
+        self.imagem_grande = pygame.image.load('Nave.png').convert_alpha()
         self.image = pygame.transform.scale(self.imagem_grande, (self.NAVE_largura, self.NAVE_altura))
         self.rect = self.image.get_rect()
         self.rect.centerx = CONFIG.largura_tela / 2
         self.rect.bottom = CONFIG.altura_tela - 10
         self.velocidadeX = 0
-        self.aceleracaoX = 3 #controla a velocidade da nave
+        self.aceleracaoX = 3
         self.vidas = 3
 
         self.sprites = sprites
@@ -48,22 +47,23 @@ class Nave(pygame.sprite.Sprite):
             self.rect.left = 0
     
     def tiro(self):
+        #constroe o disparo da Nave
         novo_disparo = Disparo(self.imagem_disparo, self.rect.top, self.rect.centerx)
         self.sprites.add(novo_disparo)
         self.disparos_sprite_nave.add(novo_disparo)
 
 class Disparo(pygame.sprite.Sprite):
     #classe do disparo
-    def __init__(self, imagem, baixo, centerx): #se pá mudar para 'image'
+    def __init__(self, imagem, baixo, centerx):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = imagem #se pá mudar para 'image'
+        self.image = imagem 
         self.rect = self.image.get_rect()
         self.rect.centerx = centerx
         self.rect.bottom = baixo
-        self.speedy = -10 #vel do disparo
+        self.speedy = -10 
 
-    def update(self):
+    def update(self): #atualiza a posição do disparo
         self.rect.y += self.speedy
         if self.rect.bottom < 0:
             self.kill() #tiro desaparece se passar do topo da tela

@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-
-#Configurações
-
 import math
 import pygame
-vetor = pygame.math.Vector2
 
+#variáveis para os estados do jogo
 INIT = 0
 GAME = 1
 GAME_OVER = 2

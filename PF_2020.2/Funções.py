@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
-#Funções
 import math
 import pygame
 import time
@@ -14,9 +11,10 @@ from Aliens import Alien
 from Boss import Death_star
 
 
-linhas = 7
-colunas = 10
-CONFIG = Config()
+linhas = 7 #serão usadas para construir a nave
+colunas = 10 #serão usadas para construir a nave
+
+CONFIG = Config() #importa as classes das Configurações
 TEXTOS = Textos()
 CORES = Cores()
 
@@ -52,7 +50,6 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(insper, (CONFIG.largura_tela // 2 - insper.get_width() // 2, 600))
 
     #imagens
-
     imagem_estrela_da_morte = pygame.image.load('Estrela-da-morte2.png').convert_alpha()
     imagem_estrela_da_morte = pygame.transform.scale(imagem_estrela_da_morte, (210, 200)) #dimensão
     tela.blit(imagem_estrela_da_morte, (780, 30)) #posição
@@ -65,14 +62,12 @@ def primeira_tela(tela): #apresenta a primeira tela
     imagem_tie_fighter = pygame.transform.scale(imagem_tie_fighter, (260, 260))
     tela.blit(imagem_tie_fighter, (650, 380))
 
-def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
+def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela (layout)
     #fonte
     fonte_texto_vidas = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_nome)
     #textos
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa)
-
-    #DESENHAR AS NAVES AQUI
 
     foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
     foto_vida = pygame.transform.scale(foto_vida_errada, (30, 30))
