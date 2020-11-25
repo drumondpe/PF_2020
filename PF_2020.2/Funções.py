@@ -29,6 +29,7 @@ def primeira_tela(tela): #apresenta a primeira tela
     titulo_do_jogo = fonte_texto_tela_inicial.render(CONFIG.titulo, True, CORES.rosa)
     instrucao = fonte_texto_medio.render('Destrua os caças Tie!', True, CORES.roxo)
     barra_comecar = fonte_texto_medio.render('Barra de espaço para começar', True, CORES.roxo)
+    comandos = fonte_texto_medio.render('A/D para andar e Barra de espaço para atirar', True, CORES.roxo)
     nome_criador1 = fonte_texto_nomes.render('Henrry Miguel', True, CORES.nomes)
     nome_criador2 = fonte_texto_nomes.render('Luiz Durand', True, CORES.nomes)
     nome_criador3 = fonte_texto_nomes.render('Pedro Drumond', True, CORES.nomes)
@@ -44,6 +45,7 @@ def primeira_tela(tela): #apresenta a primeira tela
     tela.blit(titulo_do_jogo, (CONFIG.largura_tela // 2 - titulo_do_jogo.get_width() // 2, 60))
     tela.blit(instrucao, (CONFIG.largura_tela // 2 - instrucao.get_width() // 2, 180))
     tela.blit(barra_comecar, (CONFIG.largura_tela // 2 - barra_comecar.get_width() // 2, 250))
+    tela.blit(comandos, (CONFIG.largura_tela // 2 - comandos.get_width() // 2, 310))
     tela.blit(nome_criador1, (CONFIG.largura_tela // 2 - nome_criador1.get_width() // 2, 525))
     tela.blit(nome_criador2, (CONFIG.largura_tela // 2 - nome_criador2.get_width() // 2, 550))
     tela.blit(nome_criador3, (CONFIG.largura_tela // 2 - nome_criador3.get_width() // 2, 575))
@@ -171,6 +173,8 @@ def barra_vida(tela, BOSS):
         barra_vida_cor = CORES.verde
     elif BOSS.vidas > 50:
         barra_vida_cor = CORES.amarelo
+    elif BOSS.vida > 25:
+        barra_vida_cor = CORES.laranja
     else:
         barra_vida_cor = CORES.vermelho
 
