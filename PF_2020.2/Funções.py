@@ -71,12 +71,6 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     restantes = fonte_texto_vidas.render('Vidas restantes: ', True, CORES.rosa)
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa)
 
-    #para mexer na tela, mexer aqui
-    fundo = pygame.image.load('Fundo_galáxia.png').convert()
-    fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
-    tela.fill(CORES.preto)
-    tela.blit(fundo, (0, 0)) #preenche o fundo com preto
-
     #DESENHAR AS NAVES AQUI
 
     foto_vida_errada = pygame.image.load('Nave.png').convert_alpha()
@@ -87,6 +81,7 @@ def segunda_tela(tela, NAVE, pontos): #apresenta a segunda tela
     pygame.draw.rect(tela, CORES.preto, vertices)
     tela.blit(restantes, (10, 11))
     tela.blit(pontuacao, (750, 11))
+
 
     #desenha uma vida na tela
     posicao = 175
@@ -102,10 +97,10 @@ def boss_tela(tela, NAVE, pontos, BOSS):
     pontuacao = fonte_texto_vidas.render('Pontuação: {}'.format(pontos), True, CORES.rosa)
 
     #para mexer na tela, mexer aqui
-    fundo = pygame.image.load('Fundo_galáxia.png').convert()
-    fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
-    tela.fill(CORES.preto)
-    tela.blit(fundo, (0, 0)) #preenche o fundo com preto
+    #fundo = pygame.image.load('Fundo_galáxia.png').convert()
+    #fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
+    #tela.fill(CORES.preto)
+    #tela.blit(fundo, (0, 0)) #preenche o fundo com preto
 
     #DESENHAR AS NAVES AQUI
 

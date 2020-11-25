@@ -3,9 +3,10 @@
 ### Próximos passos ###
 #disparos aleatórios do boss, conforme o tempo (boss atira a cada segundo, exemplo)
 
+
 ### Problemas ###
 #ordem de desenhos
-#tela boss bugada
+#barra_vida
 
 ### Plus ###
 #musica de fundo no vencedor
@@ -86,13 +87,17 @@ def rodar_jogo(tela):
     estado = GAME
     while estado == GAME:
         #SEGUNDA TELA
+        fundo = pygame.image.load('Fundo_galáxia.png').convert()
+        fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
         tela.fill(CORES.preto)
+        tela.blit(fundo, (0, 0))
         #mapa
-
-        funcoes.segunda_tela(tela, NAVE, pontos)
 
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
+
+        funcoes.segunda_tela(tela, NAVE, pontos)
+
 
         estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
 
