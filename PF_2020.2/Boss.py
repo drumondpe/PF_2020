@@ -22,7 +22,7 @@ class Death_star(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.imagem_grande, (self.DEATH_STAR_largura, self.DEATH_STAR_altura))
         self.rect = self.image.get_rect()
         self.rect.centerx = CONFIG.largura_tela / 2
-        self.rect.bottom = CONFIG.altura_tela - 10
+        self.rect.bottom = CONFIG.altura_tela - 500
         self.movimento_direcao = 1
         self.movimento_contador = 0
         self.aceleracaoX = 2.5 #controla a velocidade do boss
