@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame
+import time
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
@@ -12,7 +13,7 @@ CORES = Cores()
 class Nave(pygame.sprite.Sprite):
     #classe do player
 
-    def __init__(self, CONFIG, sprites, disparos_sprite):
+    def __init__(self, CONFIG, sprites, disparos_sprite, disparos_sprite_nave):
         super().__init__()
 
         self.CONFIG = CONFIG
@@ -31,6 +32,7 @@ class Nave(pygame.sprite.Sprite):
         self.sprites = sprites
         #disparo da nave
         self.disparos_sprite = disparos_sprite
+        self.disparos_sprite_nave = disparos_sprite_nave
         self.imagem_disparo = pygame.image.load('Disparo.png').convert_alpha()
         self.imagem_disparo = pygame.transform.scale(self.imagem_disparo, (25, 25))
         
@@ -48,7 +50,7 @@ class Nave(pygame.sprite.Sprite):
     def tiro(self):
         novo_disparo = Disparo(self.imagem_disparo, self.rect.top, self.rect.centerx)
         self.sprites.add(novo_disparo)
-        self.disparos_sprite.add(novo_disparo)
+        self.disparos_sprite_nave.add(novo_disparo)
 
 class Disparo(pygame.sprite.Sprite):
     #classe do disparo

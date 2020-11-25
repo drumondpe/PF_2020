@@ -4,6 +4,7 @@
 #Funções
 import math
 import pygame
+import time
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
@@ -171,14 +172,14 @@ def faz_pontos(soma_ponto):
     return aumenta_ponto
 
 def barra_vida(tela, BOSS):
-    if BOSS.vidas > 7:
+    if BOSS.vidas > 75:
         barra_vida_cor = CORES.verde
-    elif BOSS.vidas > 4:
+    elif BOSS.vidas > 50:
         barra_vida_cor = CORES.amarelo
     else:
         barra_vida_cor = CORES.vermelho
 
-    #pygame.draw.rect(tela, barra_vida_cor, (680, 30, barra_vida, 30))
+    pygame.draw.rect(tela, barra_vida_cor, (450, 30, 200, 13)) #posicao, comprimentoy, comprimentox, largura
 
 
 

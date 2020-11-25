@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pygame
 import random #mudar dps
+import time
 from Configurações import Config
 from Configurações import Textos
 from Configurações import Cores
@@ -11,7 +12,7 @@ CORES = Cores()
 
 class Death_star(pygame.sprite.Sprite):
     #classe que define a Estrela da Morte
-    def __init__(self, CONFIG, sprites, disparos_sprite): #disparos_sprite
+    def __init__(self, CONFIG, sprites, disparos_sprite, disparos_sprite_boss): #disparos_sprite
         super().__init__()
 
         self.CONFIG = CONFIG
@@ -22,42 +23,51 @@ class Death_star(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.imagem_grande, (self.DEATH_STAR_largura, self.DEATH_STAR_altura))
         self.rect = self.image.get_rect()
         self.rect.centerx = CONFIG.largura_tela / 2
-        self.rect.bottom = CONFIG.altura_tela - 500
+        self.rect.bottom = CONFIG.altura_tela - 400
         self.movimento_direcao = 1
         self.movimento_contador = 0
         self.aceleracaoX = 2.5 #controla a velocidade do boss
-        self.vidas = 10
+        self.vidas = 100
 
         self.sprites = sprites
         #disparo da Death Star
         self.disparos_sprite = disparos_sprite
+        self.disparos_sprite_boss = disparos_sprite_boss
         self.imagem_disparo = pygame.image.load('Disparo2.png').convert_alpha()
         self.imagem_disparo = pygame.transform.scale(self.imagem_disparo, (25, 25))
- 
+
+        self.frame = 0
+        self.last_update = pygame.time.get_ticks()
+        self.frame_ticks = 1200 #tempo para atirar
+
     def update(self): #MUDAR
+        #atualiza os disparos
+        now = pygame.time.get_ticks() #momento atual
+        elapsed_ticks = now - self.last_update  #quantos ticks se passaram desde a ultima mudança de frame
+
+        #se já está na hora de mudar de imagem executa
+        if elapsed_ticks > self.frame_ticks:
+            self.last_update = now
+            self.frame += 1
+
+            self.disparou = self.tiro() #funcao que faz boss atirar (Death_star.tiro())
+
         #atualiza a posição da estrela da morte
         self.rect.x += self.movimento_direcao
 
         #Mantem dentro da tela
-        self.movimento_contador += 6 #velocidade do boss
-        if self.movimento_contador == 300:
+        self.movimento_contador += 5 #velocidade do boss
+        if self.movimento_contador == 1100:
             self.movimento_contador = 0
             self.movimento_direcao *= -1
 
-        # novas posições e velocidades, talvez apagar***
-        #if self.rect.top > CONFIG.altura_tela or self.rect.right < 0 or self.rect.left > CONFIG.largura_tela:
-        #    self.rect.x = random.randint(0, CONFIG.largura_tela-20) #LARGURA_alien = 20
-        #    self.rect.y = random.randint(-100, -30) #ALTURA_alien = 30
-        #    self.speedx = random.randint(-3, 3)
-        #    self.speedy = random.randint(2, 9)
-
-
     def tiro(self):
-        novo_disparo2 = Disparo2(self.imagem_disparo, self.rect.top, self.rect.centerx)
+        novo_disparo2 = Disparo2(self.imagem_disparo, self.rect.bottom, self.rect.centerx)
         self.sprites.add(novo_disparo2)
         self.disparos_sprite.add(novo_disparo2)
+        self.disparos_sprite_boss.add(novo_disparo2)
 
-class Disparo(pygame.sprite.Sprite):
+class Disparo2(pygame.sprite.Sprite):
     #classe do disparo
     def __init__(self, imagem, baixo, centerx): #se pá mudar para 'image'
         pygame.sprite.Sprite.__init__(self)
@@ -66,7 +76,7 @@ class Disparo(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = centerx
         self.rect.bottom = baixo
-        self.speedy = -10 #vel do disparo
+        self.speedy = 5 #vel do disparo
 
     def update(self):
         self.rect.y += self.speedy
