@@ -5,8 +5,8 @@
 
 
 ### Problemas ###
-#ordem de desenhos
 #barra_vida
+#sem disparos no boss
 
 ### Plus ###
 #musica de fundo no vencedor
@@ -98,7 +98,6 @@ def rodar_jogo(tela):
 
         funcoes.segunda_tela(tela, NAVE, pontos)
 
-
         estado = funcoes.eventos_game(estado, NAVE) #verifica os eventos
 
         colisao = pygame.sprite.spritecollide(NAVE, aliens_colisao, True) #verifica se houve colisão dos aliens com a nave e destroi o que colidiu, super útil
@@ -140,13 +139,15 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
+        fundo = pygame.image.load('Fundo_galáxia.png').convert()
+        fundo = pygame.transform.scale(fundo, (CONFIG.largura_tela, CONFIG.altura_tela))
         tela.fill(CORES.preto)
-
-        funcoes.boss_tela(tela, NAVE, pontos, BOSS)
-        #talvez chamar o segunda tela aqui
+        tela.blit(fundo, (0, 0))
 
         sprites.update() #mudar isso pra função da tela
         sprites.draw(tela)
+
+        funcoes.boss_tela(tela, NAVE, pontos, BOSS)
 
         funcoes.barra_vida(tela, BOSS) #talvez tirar a variável
 
@@ -155,11 +156,14 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
         Disparo_acertou_o_BOSS = pygame.sprite.spritecollide(BOSS, disparos_sprite, True) #disparos da nave que acertaram o boss
         Disparo2_acertou_a_NAVE = pygame.sprite.spritecollide(NAVE, disparos_sprite, True) #disparos do boss que acertaram a nave
     
+        #FAZER UM RELOGIO PARA OS DESPAROS
+
         if len(Disparo2_acertou_a_NAVE) > 0:
             NAVE.vidas -= 1
 
         if len(Disparo_acertou_o_BOSS) > 0:
             BOSS.vidas -= 1
+
 
         if NAVE.vidas <= 0:
             estado = GAME_OVER
