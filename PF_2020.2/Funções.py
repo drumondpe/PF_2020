@@ -173,7 +173,7 @@ def barra_vida(tela, BOSS):
         barra_vida_cor = CORES.verde
     elif BOSS.vidas > 50:
         barra_vida_cor = CORES.amarelo
-    elif BOSS.vida > 25:
+    elif BOSS.vidas > 25:
         barra_vida_cor = CORES.laranja
     else:
         barra_vida_cor = CORES.vermelho
