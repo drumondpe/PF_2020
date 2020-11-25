@@ -57,7 +57,7 @@ class Death_star(pygame.sprite.Sprite):
 
         #Mantem dentro da tela
         self.movimento_contador += 5 #velocidade do boss
-        if self.movimento_contador == 1100:
+        if self.movimento_contador == 1400:
             self.movimento_contador = 0
             self.movimento_direcao *= -1
 

@@ -153,8 +153,8 @@ def vencedor_tela(tela):
     fonte_texto_medio = pygame.font.SysFont(TEXTOS.fonte, TEXTOS.tamanho_medio)
 
     #textos da tela game over
-    voce_venceu = fonte_texto_tela_inicial.render('VOCÊ VENCEU!', True, CORES.azul_marinho)
-    parabens = fonte_texto_medio.render('Parabéns por vencer o Império', True, CORES.azul_marinho)
+    voce_venceu = fonte_texto_tela_inicial.render('VOCÊ VENCEU!', True, CORES.laranja)
+    parabens = fonte_texto_medio.render('Parabéns por vencer o Império', True, CORES.laranja)
     barra_recomeçar = fonte_texto_medio.render('Pressione barra de espaço para recomeçar!', True, CORES.laranja)
     rebelde = pygame.image.load('Rebelde.jpg').convert()
     rebelde = pygame.transform.scale(rebelde, (CONFIG.largura_tela, CONFIG.altura_tela))

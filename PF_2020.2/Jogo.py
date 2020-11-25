@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-
-### Próximos passos ###
-#direção dos disparos
-
-
-### Problemas ###
-#barra_vida
-#sem disparos no boss
-
-### Plus ###
-#som do disparo
-
 """
 Autores: Luiz Durand, Henrry Miguel e Pedro Drumond
 """
@@ -70,8 +57,6 @@ def rodar_vencedor(tela):
 
 def rodar_jogo(tela):
     relogio = pygame.time.Clock()
-    COLISAO_ALIEN = False #usar para quando houver colisão do alien com a nave
-    COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com o alien
 
     ### INICIA OBJETOS ###
     sprites = pygame.sprite.Group()
@@ -123,7 +108,7 @@ def rodar_jogo(tela):
     return estado, NAVE, pontos, sprites, disparos_sprite, disparos_sprite_nave
 
 
-def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite, disparos_sprite_nave, disparos_sprite_boss):
+def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite, disparos_sprite_nave):
     #pegar as coisas da funcao de cima e rodar a tela
     clock = pygame.time.Clock()
     COLISAO_DISPARO = False #usar para quando houver colisão do disparo da nave com a Death Star
@@ -203,7 +188,7 @@ while estado_jogo != QUIT:
     elif estado_jogo == BOSS:
         pygame.mixer.music.load('musica_boss.mp3')
         pygame.mixer.music.play()
-        estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite, disparos_sprite_boss) #NOVO
+        estado_jogo = rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite, disparos_sprite_nave) #NOVO
 
     elif estado_jogo == VENCEDOR:
         pygame.mixer.music.load('vitoria.mp3') 
