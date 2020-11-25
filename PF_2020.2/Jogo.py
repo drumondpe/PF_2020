@@ -135,7 +135,9 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
     estado = BOSS
     while estado == BOSS:
     #TELA DO BOSS
+        tela.fill(CORES.preto)
 
+        funcoes.boss_tela(tela, NAVE, pontos, BOSS)
         #talvez chamar o segunda tela aqui
 
         sprites.update() #mudar isso pra função da tela
