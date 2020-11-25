@@ -156,7 +156,7 @@ def barra_vida(tela, BOSS):
     else:
         barra_vida_cor = CORES.vermelho
 
-    pygame.draw.rect(tela, barra_vida_cor, (680, 30, barra_vida, 30))
+    #pygame.draw.rect(tela, barra_vida_cor, (680, 30, barra_vida, 30))
 
 
 

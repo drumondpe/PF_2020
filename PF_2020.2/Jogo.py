@@ -151,7 +151,7 @@ def rodar_jogo_boss(tela, NAVE, pontos, sprites, disparos_sprite):
         if len(Disparo2_acertou_a_NAVE) > 0:
             NAVE.vidas -= 1
 
-        if len(colidiu_disparo_boss) > 0:
+        if len(Disparo_acertou_o_BOSS) > 0:
             BOSS.vidas -= 1
 
         if NAVE.vidas <= 0:
